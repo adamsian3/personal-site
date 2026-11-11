@@ -38,7 +38,8 @@
   "bg": "#1d3c78",
   "rim": "#d8b45a",
   "fg": "#ffffff",
-  "label": "Hard Rock UK"
+  "label": "Hard Rock UK",
+  "image": "images/hard-rock-uk.webp"
  },
  {
   "id": "hard-rock-orlando",
@@ -51,7 +52,8 @@
   "bg": "#1c1c1c",
   "rim": "#d8b45a",
   "fg": "#f7d774",
-  "label": "Hard Rock Orlando"
+  "label": "Hard Rock Orlando",
+  "image": "images/hard-rock-orlando.webp"
  },
  {
   "id": "london-dungeon",
@@ -64,7 +66,8 @@
   "bg": "#2b2b2b",
   "rim": "#8f1d1d",
   "fg": "#e8d9b5",
-  "label": "London Dungeon"
+  "label": "London Dungeon",
+  "image": "images/london-dungeon.webp"
  },
  {
   "id": "tower-gate",
@@ -77,7 +80,8 @@
   "bg": "#4d5b6a",
   "rim": "#c0c6cc",
   "fg": "#ffffff",
-  "label": "Tower Gate"
+  "label": "Tower Gate",
+  "image": "images/tower-gate.webp"
  },
  {
   "id": "temple-bar",
@@ -90,7 +94,8 @@
   "bg": "#a5161d",
   "rim": "#e9c46a",
   "fg": "#fff4d6",
-  "label": "Temple Bar"
+  "label": "Temple Bar",
+  "image": "images/temple-bar.webp"
  },
  {
   "id": "ireland",
@@ -103,20 +108,22 @@
   "bg": "#169b62",
   "rim": "#ff883e",
   "fg": "#ffffff",
-  "label": "Ireland"
+  "label": "Ireland",
+  "image": "images/ireland.webp"
  },
  {
   "id": "scotland",
-  "name": "Scotland",
-  "category": "Places",
+  "name": "Scouts",
+  "category": "Brands & work",
   "acquired": "Before 2021",
-  "where": "Scotland",
+  "where": "",
   "description": "",
   "shape": "shield",
   "bg": "#005eb8",
   "rim": "#ffffff",
   "fg": "#ffffff",
-  "label": "Scots"
+  "label": "Scouts",
+  "image": "images/scotland.webp"
  },
  {
   "id": "yorkshire",
@@ -129,7 +136,8 @@
   "bg": "#ffffff",
   "rim": "#1f5aa6",
   "fg": "#1f5aa6",
-  "label": "Yorkshire"
+  "label": "Yorkshire",
+  "image": "images/yorkshire.webp"
  },
  {
   "id": "york-museum",
@@ -142,7 +150,8 @@
   "bg": "#5b3a29",
   "rim": "#d9b98c",
   "fg": "#f6ead6",
-  "label": "York Museum"
+  "label": "York Museum",
+  "image": "images/york-museum.webp"
  },
  {
   "id": "mexico",
@@ -155,7 +164,8 @@
   "bg": "#006847",
   "rim": "#ce1126",
   "fg": "#ffffff",
-  "label": "Mexico"
+  "label": "Mexico",
+  "image": "images/mexico.webp"
  },
  {
   "id": "millennium-dome",
@@ -168,7 +178,8 @@
   "bg": "#e7e2d5",
   "rim": "#d6372b",
   "fg": "#1f3a8a",
-  "label": "2000 Dome"
+  "label": "2000 Dome",
+  "image": "images/millennium-dome.webp"
  },
  {
   "id": "team-gb-gold",
@@ -181,7 +192,8 @@
   "bg": "#1a2d6b",
   "rim": "#d4af37",
   "fg": "#ffffff",
-  "label": "Team GB"
+  "label": "Team GB",
+  "image": "images/team-gb-gold.webp"
  },
  {
   "id": "korea-olympic",
@@ -194,7 +206,8 @@
   "bg": "#ffffff",
   "rim": "#0047a0",
   "fg": "#cd2e3a",
-  "label": "Korea Olympic"
+  "label": "Korea Olympic",
+  "image": "images/korea-olympic.webp"
  },
  {
   "id": "sports-gold",
@@ -207,7 +220,8 @@
   "bg": "#d4af37",
   "rim": "#8c6d1f",
   "fg": "#3b2b06",
-  "label": "Gold"
+  "label": "Gold",
+  "image": "images/sports-gold.webp"
  },
  {
   "id": "sports-silver",
@@ -220,7 +234,8 @@
   "bg": "#c9ccd1",
   "rim": "#7d828a",
   "fg": "#2c2f33",
-  "label": "Silver"
+  "label": "Silver",
+  "image": "images/sports-silver.webp"
  },
  {
   "id": "sports-bronze",
@@ -233,7 +248,8 @@
   "bg": "#b0703a",
   "rim": "#6e4220",
   "fg": "#fff1e0",
-  "label": "Bronze"
+  "label": "Bronze",
+  "image": "images/sports-bronze.webp"
  },
  {
   "id": "coca-cola-uk",
@@ -246,7 +262,8 @@
   "bg": "#e41e2b",
   "rim": "#ffffff",
   "fg": "#ffffff",
-  "label": "Coca-Cola UK"
+  "label": "Coca-Cola UK",
+  "image": "images/coca-cola-uk.webp"
  },
  {
   "id": "g4s",
@@ -259,7 +276,8 @@
   "bg": "#d71920",
   "rim": "#ffffff",
   "fg": "#ffffff",
-  "label": "G4S"
+  "label": "G4S",
+  "image": "images/g4s.webp"
  },
  {
   "id": "guinness",
@@ -272,7 +290,8 @@
   "bg": "#111111",
   "rim": "#c9a227",
   "fg": "#f2e6c4",
-  "label": "Guinness"
+  "label": "Guinness",
+  "image": "images/guinness.webp"
  },
  {
   "id": "bt-london-live",
@@ -285,7 +304,8 @@
   "bg": "#5514b4",
   "rim": "#ffffff",
   "fg": "#ffffff",
-  "label": "BT London Live"
+  "label": "BT London Live",
+  "image": "images/bt-london-live.webp"
  },
  {
   "id": "stripe",
@@ -298,7 +318,8 @@
   "bg": "#635bff",
   "rim": "#ffffff",
   "fg": "#ffffff",
-  "label": "Stripe"
+  "label": "Stripe",
+  "image": "images/stripe.webp"
  },
  {
   "id": "bronze-dofe",
@@ -311,7 +332,8 @@
   "bg": "#a0622d",
   "rim": "#5a3415",
   "fg": "#fff1e0",
-  "label": "Bronze DofE"
+  "label": "Bronze DofE",
+  "image": "images/bronze-dofe.webp"
  },
  {
   "id": "bucks-welcome",
@@ -324,7 +346,8 @@
   "bg": "#1d1d1b",
   "rim": "#e5007e",
   "fg": "#ffffff",
-  "label": "Bucks Welcome"
+  "label": "Bucks Welcome",
+  "image": "images/bucks-welcome.webp"
  },
  {
   "id": "jurassic-park",
@@ -337,7 +360,8 @@
   "bg": "#d32f2f",
   "rim": "#f4c20d",
   "fg": "#1b1b1b",
-  "label": "Jurassic Park"
+  "label": "Jurassic Park",
+  "image": "images/jurassic-park.webp"
  },
  {
   "id": "westworld",
@@ -350,7 +374,8 @@
   "bg": "#e9e4da",
   "rim": "#2a2a2a",
   "fg": "#2a2a2a",
-  "label": "Westworld"
+  "label": "Westworld",
+  "image": "images/westworld.webp"
  },
  {
   "id": "hawkins",
@@ -363,7 +388,8 @@
   "bg": "#0d0d0d",
   "rim": "#c1121f",
   "fg": "#e63946",
-  "label": "Hawkins"
+  "label": "Hawkins",
+  "image": "images/hawkins.webp"
  },
  {
   "id": "overwatch",
@@ -376,7 +402,8 @@
   "bg": "#f99e1a",
   "rim": "#ffffff",
   "fg": "#ffffff",
-  "label": "Overwatch"
+  "label": "Overwatch",
+  "image": "images/overwatch.webp"
  },
  {
   "id": "waitress",
@@ -389,7 +416,8 @@
   "bg": "#f7d6e0",
   "rim": "#b5385b",
   "fg": "#6b1f35",
-  "label": "Waitress"
+  "label": "Waitress",
+  "image": "images/waitress.webp"
  },
  {
   "id": "flamingo",
@@ -402,7 +430,8 @@
   "bg": "#ff8fb1",
   "rim": "#ffffff",
   "fg": "#5a1030",
-  "label": "Flamingo"
+  "label": "Flamingo",
+  "image": "images/flamingo.webp"
  },
  {
   "id": "lizard",
@@ -415,7 +444,8 @@
   "bg": "#3a9d5d",
   "rim": "#f2e94e",
   "fg": "#ffffff",
-  "label": "Lizard"
+  "label": "Lizard",
+  "image": "images/lizard.webp"
  },
  {
   "id": "snail",
@@ -428,6 +458,7 @@
   "bg": "#e8c07d",
   "rim": "#6b4423",
   "fg": "#3d2412",
-  "label": "Snail"
+  "label": "Snail",
+  "image": "images/snail.webp"
  }
 ]

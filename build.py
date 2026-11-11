@@ -693,8 +693,15 @@ def build_pins():
     pins = json.loads(src.read_text(encoding="utf-8"))
     for p in pins:
         if p.get("image") and not p["image"].startswith(("/", "http")):
-            r = image(Path(p["image"]).name)
-            p["image"] = r[0] if r else None
+            local = ROOT / "pins" / p["image"]
+            if local.exists():
+                dest = OUT / "img" / "pins" / local.name
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(local, dest)
+                p["image"] = f"/img/pins/{local.name}?v={int(local.stat().st_mtime)}"
+            else:
+                r = image(Path(p["image"]).name)
+                p["image"] = r[0] if r else None
         for k in ("name", "description", "where", "acquired", "label"):
             if isinstance(p.get(k), str):
                 p[k] = no_dash(p[k])
