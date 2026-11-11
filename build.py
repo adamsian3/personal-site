@@ -384,6 +384,24 @@ def travel_card(n):
 
 # ---------------------------------------------------------------- pages
 
+LIGHTBOX_JS = r"""
+(() => {
+  const box = document.getElementById('lightbox'), big = box.querySelector('img');
+  let last = null;
+  const close = () => { box.hidden = true; big.removeAttribute('src'); document.body.style.overflow = ''; if (last) last.focus(); };
+  document.querySelectorAll('article.prose img').forEach(img => {
+    img.tabIndex = 0; img.setAttribute('role', 'button');
+    img.setAttribute('aria-label', (img.alt ? img.alt + ', ' : '') + 'open larger image');
+    const open = () => { last = img; big.src = img.currentSrc || img.src; big.alt = img.alt || ''; box.hidden = false; document.body.style.overflow = 'hidden'; };
+    img.addEventListener('click', open);
+    img.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+  });
+  box.addEventListener('click', close);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !box.hidden) close(); });
+})();
+"""
+
+
 def build_post(n, section_label, section_url):
     meta = []
     if n.date:
@@ -400,7 +418,9 @@ def build_post(n, section_label, section_url):
 </header>
 <article class="prose">{render(n.clean_body())}</article>
 <a class="back" href="{section_url}">← All {esc(section_label)} posts</a>
-</div>"""
+</div>
+<div class="lightbox" id="lightbox" hidden><img alt=""><p class="lightbox-hint">Tap anywhere to close</p></div>
+<script>{LIGHTBOX_JS}</script>"""
     page(n.url, n.title, body, current=section_url, desc=n.excerpt() or None)
 
 

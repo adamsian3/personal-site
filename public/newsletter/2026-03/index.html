@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/style.css?v=020b4103">
+<link rel="stylesheet" href="/assets/style.css?v=c31f7307">
 </head>
 <body>
 <header class="site-header"><div class="wrap">
@@ -79,6 +79,23 @@
 </blockquote></article>
 <a class="back" href="/Blog/Newsletters/">← All Newsletter posts</a>
 </div>
+<div class="lightbox" id="lightbox" hidden><img alt=""><p class="lightbox-hint">Tap anywhere to close</p></div>
+<script>
+(() => {
+  const box = document.getElementById('lightbox'), big = box.querySelector('img');
+  let last = null;
+  const close = () => { box.hidden = true; big.removeAttribute('src'); document.body.style.overflow = ''; if (last) last.focus(); };
+  document.querySelectorAll('article.prose img').forEach(img => {
+    img.tabIndex = 0; img.setAttribute('role', 'button');
+    img.setAttribute('aria-label', (img.alt ? img.alt + ', ' : '') + 'open larger image');
+    const open = () => { last = img; big.src = img.currentSrc || img.src; big.alt = img.alt || ''; box.hidden = false; document.body.style.overflow = 'hidden'; };
+    img.addEventListener('click', open);
+    img.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+  });
+  box.addEventListener('click', close);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !box.hidden) close(); });
+})();
+</script>
 </main>
 <section class="contact" aria-labelledby="contact-h"><div class="wrap">
 <p class="label">Get in touch</p>
