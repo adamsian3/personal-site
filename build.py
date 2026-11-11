@@ -545,10 +545,81 @@ def build_letters(index, letters):
     return items
 
 
+# Map positions for travel places. A post can override with `coords: lat, lng` in its frontmatter.
+TRAVEL_COORDS = {
+    "Amsterdam": (52.3676, 4.9041), "Brighton": (50.8225, -0.1372), "Dublin": (53.3498, -6.2603),
+    "Edinburgh": (55.9533, -3.1883), "Gibraltar": (36.1408, -5.3536), "Hamburg": (53.5511, 9.9937),
+    "Ibiza": (38.9067, 1.4206), "Iceland": (64.1466, -21.9426), "Madeira": (32.6669, -16.9241),
+    "Oxford": (51.7520, -1.2577), "Romania": (45.6579, 25.6012), "Rome": (41.9028, 12.4964),
+    "York": (53.9600, -1.0873), "Benidorm": (38.5411, -0.1225), "Alicante": (38.3452, -0.4810),
+    "Valencia": (39.4699, -0.3763), "Chamonix": (45.9237, 6.8694), "Paris": (48.8566, 2.3522),
+    "New York": (40.7128, -74.0060), "Turkey": (41.0082, 28.9784), "Hong Kong": (22.3193, 114.1694),
+    "New Zealand": (-41.2865, 174.7762), "Egypt": (30.0444, 31.2357),
+}
+
+
+def place_coords(name, fm=None):
+    c = (fm or {}).get("coords")
+    if c:
+        try:
+            lat, lng = (float(x) for x in str(c).split(","))
+            return lat, lng
+        except ValueError:
+            pass
+    return TRAVEL_COORDS.get(name)
+
+
+TRAVEL_JS = r"""
+(() => {
+  const places = JSON.parse(document.getElementById('places-data').textContent);
+  const dark = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches;
+  const css = getComputedStyle(document.documentElement);
+  const fjord = css.getPropertyValue('--fjord').trim() || '#3C6478';
+  const sea = css.getPropertyValue('--sea-deep').trim() || '#436F67';
+  const map = L.map('travel-map', { scrollWheelZoom: false, worldCopyJump: true });
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+  const esc = s => String(s || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const layers = { post: L.layerGroup(), soon: L.layerGroup() };
+  places.forEach(p => {
+    const post = p.status === 'post';
+    const m = L.circleMarker([p.lat, p.lng], {
+      radius: post ? 8 : 6, weight: 2, color: post ? fjord : sea,
+      fillColor: post ? fjord : (dark ? '#121C23' : '#FFFFFF'), fillOpacity: post ? 0.9 : 1
+    });
+    const html = [
+      post && p.img ? '<a href="' + esc(p.url) + '"><img src="' + esc(p.img) + '" alt="" style="width:100%;height:110px;object-fit:cover;border-radius:2px;margin:0 0 8px;display:block"></a>' : '',
+      '<p class="label" style="margin:0 0 4px">' + (post ? 'Travel post' : 'Coming soon') + '</p>',
+      '<strong>' + esc(p.name) + '</strong>',
+      p.where && p.where !== p.name ? '<div>' + esc(p.where) + '</div>' : '',
+      p.visited ? '<div class="muted">Visited ' + esc(p.visited) + '</div>' : '',
+      post ? '<div style="margin-top:6px"><a href="' + esc(p.url) + '">Read the post →</a></div>' : '<div class="muted" style="margin-top:6px">Post on the way</div>'
+    ];
+    m.bindPopup(html.join(''), { maxWidth: 240, minWidth: 200 });
+    m.bindTooltip(p.name, { direction: 'top', offset: [0, -6] });
+    layers[post ? 'post' : 'soon'].addLayer(m);
+  });
+  layers.post.addTo(map); layers.soon.addTo(map);
+  const pts = places.map(p => [p.lat, p.lng]);
+  const fit = (list) => { map.invalidateSize(); map.fitBounds(list, { padding: [30, 30], maxZoom: 6 }); };
+  const europe = places.filter(p => p.lng > -30 && p.lng < 40 && p.lat > 30).map(p => [p.lat, p.lng]);
+  fit(europe.length ? europe : pts); window.addEventListener('load', () => fit(europe.length ? europe : pts));
+  document.querySelectorAll('#travel-filters .chip').forEach(b => b.addEventListener('click', () => {
+    const f = b.dataset.f;
+    document.querySelectorAll('#travel-filters .chip').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    if (f === 'world') { fit(pts); return; }
+    if (f === 'europe') { fit(europe); return; }
+  }));
+})();
+"""
+
+
 def build_travel(index, travel):
     raw = index.raw_body
     sections = re.split(r"^## ", raw, flags=re.M)[1:]
     out, seen = "", set()
+    places = []
     for sec in sections:
         lines = sec.splitlines()
         region = lines[0].strip()
@@ -564,6 +635,12 @@ def build_travel(index, travel):
                 if n and n.url not in seen:
                     seen.add(n.url)
                     cards.append(travel_card(n))
+                    ll = place_coords(n.name, n.fm)
+                    if ll:
+                        cov = image(n.cover) if n.cover else None
+                        places.append({"name": n.title, "where": n.location, "lat": ll[0], "lng": ll[1],
+                                       "status": "post", "url": n.url, "visited": n.visited,
+                                       "img": cov[0] if cov else ""})
                 continue
             indent = len(line) - len(line.lstrip())
             nxt = body_lines[i + 1] if i + 1 < len(body_lines) else ""
@@ -572,6 +649,9 @@ def build_travel(index, travel):
             label = re.sub(r"\s*-?\s*\*?Coming soon\*?", "", item, flags=re.I).strip(" *-")
             if label and label.lower() != "none yet":
                 soon.append(label)
+                ll = place_coords(label)
+                if ll:
+                    places.append({"name": label, "where": region, "lat": ll[0], "lng": ll[1], "status": "soon"})
         if cards or soon:
             grid = f'<div class="grid">{"".join(cards)}</div>' if cards else ""
             later = (f'<p class="soon-line"><span class="label" style="display:inline;margin-right:8px">Coming soon</span>'
@@ -580,8 +660,20 @@ def build_travel(index, travel):
     body = f"""<div class="wrap">
 <header class="page-head read"><p class="label">Blog</p><h1>Travel</h1>
 <p class="muted">Notes and photos from the places I've been, with where to eat and what to see.</p></header>
+<section style="margin-top:24px">
+<div class="filters" id="travel-filters" role="group" aria-label="Map view">
+<button class="chip" type="button" data-f="europe" aria-pressed="true">Europe</button>
+<button class="chip" type="button" data-f="world" aria-pressed="false">World</button>
+</div>
+<div id="travel-map" class="cafe-map" role="region" aria-label="Map of travel posts"></div>
+<div class="map-legend small muted"><span class="dot been"></span>Travel post <span class="dot list"></span>Coming soon</div>
+</section>
 {out}
 </div>"""
+    data = json.dumps(places, ensure_ascii=False).replace("</", "<\\/")
+    body = ('<link rel="stylesheet" href="/assets/vendor/leaflet/leaflet.css">' + body +
+            f'<script type="application/json" id="places-data">{data}</script>'
+            f'<script src="/assets/vendor/leaflet/leaflet.js"></script><script>{TRAVEL_JS}</script>')
     page(index.url, "Travel", body, current=index.url, desc="Ian Adams' travel blog: notes and photos from trips.")
 
 
