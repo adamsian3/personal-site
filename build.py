@@ -379,7 +379,7 @@ def travel_card(n):
         cover = '<img alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" width="16" height="9">'
     where = "" if (n.location or "").strip() == n.title else (n.location or "")
     return (f'<a class="card photo" href="{n.url}">{cover}<div class="body">'
-            f'<h3>{esc(n.title)}</h3><span class="meta">{esc(where)}</span></div></a>')
+            f'<h3>{esc(n.title.split(": ")[0])}</h3><span class="meta">{esc(where)}</span></div></a>')
 
 
 # ---------------------------------------------------------------- pages
@@ -580,6 +580,15 @@ TRAVEL_COORDS = {
     "Valencia": (39.4699, -0.3763), "Chamonix": (45.9237, 6.8694), "Paris": (48.8566, 2.3522),
     "New York": (40.7128, -74.0060), "Turkey": (41.0082, 28.9784), "Hong Kong": (22.3193, 114.1694),
     "New Zealand": (-41.2865, 174.7762), "Egypt": (30.0444, 31.2357),
+    "Johannesburg": (-26.2041, 28.0473), "Madrid": (40.4168, -3.7038), "Altea Hills": (38.5989, -0.0518),
+    "Lanzarote": (28.9630, -13.5477), "Benalmádena": (36.5988, -4.5167), "Tenerife": (28.2916, -16.6291),
+    "Morzine": (46.1792, 6.7089), "Kos": (36.8933, 27.2877), "Paphos": (34.7720, 32.4297),
+    "Dubrovnik": (42.6507, 18.0944), "Lucerne": (47.0502, 8.3093), "Åhus": (55.9246, 14.2843),
+    "Cambridge": (52.2053, 0.1218), "Cornwall": (50.3389, -4.7920), "Devon": (50.7156, -3.5309),
+    "Topsham": (50.6847, -3.4645), "Torquay": (50.4619, -3.5253), "Tenby": (51.6727, -4.7027),
+    "Hastings": (50.8543, 0.5735), "Bognor Regis": (50.7842, -0.6764),
+    "Etchinghill & White Cliffs of Dover": (51.1179, 1.1022), "Los Angeles": (34.0522, -118.2437),
+    "Orlando": (28.5384, -81.3789),
 }
 
 
@@ -606,26 +615,27 @@ TRAVEL_JS = r"""
     maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
   const esc = s => String(s || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-  const layers = { post: L.layerGroup(), soon: L.layerGroup() };
+  const layers = { post: L.layerGroup(), soon: L.layerGroup(), visited: L.layerGroup() };
+  const glass = css.getPropertyValue('--sea-glass').trim() || '#7FA9A1';
   places.forEach(p => {
-    const post = p.status === 'post';
+    const post = p.status === 'post', seen = p.status === 'visited';
     const m = L.circleMarker([p.lat, p.lng], {
       radius: post ? 8 : 6, weight: 2, color: post ? fjord : sea,
-      fillColor: post ? fjord : (dark ? '#121C23' : '#FFFFFF'), fillOpacity: post ? 0.9 : 1
+      fillColor: post ? fjord : (seen ? glass : (dark ? '#121C23' : '#FFFFFF')), fillOpacity: post ? 0.9 : 1
     });
     const html = [
       post && p.img ? '<a href="' + esc(p.url) + '"><img src="' + esc(p.img) + '" alt="" style="width:100%;height:110px;object-fit:cover;border-radius:2px;margin:0 0 8px;display:block"></a>' : '',
-      '<p class="label" style="margin:0 0 4px">' + (post ? 'Travel post' : 'Coming soon') + '</p>',
+      '<p class="label" style="margin:0 0 4px">' + (post ? 'Travel post' : (seen ? 'Visited' : 'Coming soon')) + '</p>',
       '<strong>' + esc(p.name) + '</strong>',
       p.where && p.where !== p.name ? '<div>' + esc(p.where) + '</div>' : '',
       p.visited ? '<div class="muted">Visited ' + esc(p.visited) + '</div>' : '',
-      post ? '<div style="margin-top:6px"><a href="' + esc(p.url) + '">Read the post →</a></div>' : '<div class="muted" style="margin-top:6px">Post on the way</div>'
+      post ? '<div style="margin-top:6px"><a href="' + esc(p.url) + '">Read the post →</a></div>' : (seen ? '' : '<div class="muted" style="margin-top:6px">Post on the way</div>')
     ];
     m.bindPopup(html.join(''), { maxWidth: 240, minWidth: 200 });
     m.bindTooltip(p.name, { direction: 'top', offset: [0, -6] });
-    layers[post ? 'post' : 'soon'].addLayer(m);
+    layers[p.status in layers ? p.status : 'soon'].addLayer(m);
   });
-  layers.post.addTo(map); layers.soon.addTo(map);
+  layers.visited.addTo(map); layers.soon.addTo(map); layers.post.addTo(map);
   const pts = places.map(p => [p.lat, p.lng]);
   const fit = (list) => { map.invalidateSize(); map.fitBounds(list, { padding: [30, 30], maxZoom: 6 }); };
   const europe = places.filter(p => p.lng > -30 && p.lng < 40 && p.lat > 30).map(p => [p.lat, p.lng]);
@@ -648,7 +658,7 @@ def build_travel(index, travel):
     for sec in sections:
         lines = sec.splitlines()
         region = lines[0].strip()
-        cards, soon = [], []
+        cards, soon, visited_only = [], [], []
         body_lines = [l.replace("\t", "    ") for l in lines[1:]]
         for i, line in enumerate(body_lines):
             if not re.match(r"^\s*- ", line):
@@ -663,7 +673,7 @@ def build_travel(index, travel):
                     ll = place_coords(n.name, n.fm)
                     if ll:
                         cov = image(n.cover) if n.cover else None
-                        places.append({"name": n.title, "where": n.location, "lat": ll[0], "lng": ll[1],
+                        places.append({"name": n.title.split(": ")[0], "where": n.location, "lat": ll[0], "lng": ll[1],
                                        "status": "post", "url": n.url, "visited": n.visited,
                                        "img": cov[0] if cov else ""})
                 continue
@@ -671,17 +681,21 @@ def build_travel(index, travel):
             nxt = body_lines[i + 1] if i + 1 < len(body_lines) else ""
             if re.match(r"^\s*- ", nxt) and len(nxt) - len(nxt.lstrip()) > indent:
                 continue  # a country heading with places under it
-            label = re.sub(r"\s*-?\s*\*?Coming soon\*?", "", item, flags=re.I).strip(" *-")
+            been_only = bool(re.search(r"\*?visited\*?\s*$", item, re.I))
+            label = re.sub(r"\s*-?\s*\*?(Coming soon|Visited)\*?\s*$", "", item, flags=re.I).strip(" *-")
             if label and label.lower() != "none yet":
-                soon.append(label)
+                (visited_only if been_only else soon).append(label)
                 ll = place_coords(label)
                 if ll:
-                    places.append({"name": label, "where": region, "lat": ll[0], "lng": ll[1], "status": "soon"})
-        if cards or soon:
+                    places.append({"name": label, "where": region, "lat": ll[0], "lng": ll[1],
+                                   "status": "visited" if been_only else "soon"})
+        if cards or soon or visited_only:
             grid = f'<div class="grid">{"".join(cards)}</div>' if cards else ""
             later = (f'<p class="soon-line"><span class="label" style="display:inline;margin-right:8px">Coming soon</span>'
                      f'{esc(" · ".join(soon))}</p>') if soon else ""
-            out += f'<section><h2>{esc(region)}</h2>{grid}{later}</section>'
+            also = (f'<p class="soon-line"><span class="label" style="display:inline;margin-right:8px">Also visited</span>'
+                    f'{esc(" · ".join(visited_only))}</p>') if visited_only else ""
+            out += f'<section><h2>{esc(region)}</h2>{grid}{later}{also}</section>'
     body = f"""<div class="wrap">
 <header class="page-head read"><p class="label">Blog</p><h1>Travel</h1>
 <p class="muted">Notes and photos from the places I've been, with where to eat and what to see.</p></header>
@@ -691,7 +705,7 @@ def build_travel(index, travel):
 <button class="chip" type="button" data-f="world" aria-pressed="false">World</button>
 </div>
 <div id="travel-map" class="cafe-map" role="region" aria-label="Map of travel posts"></div>
-<div class="map-legend small muted"><span class="dot been"></span>Travel post <span class="dot list"></span>Coming soon</div>
+<div class="map-legend small muted"><span class="dot been"></span>Travel post <span class="dot list"></span>Coming soon <span class="dot seen"></span>Visited</div>
 </section>
 {out}
 </div>"""
@@ -810,11 +824,50 @@ PINS_JS = r"""
 """
 
 
+def md_table(note):
+    """Rows of the first markdown table in a vault note, as dicts keyed by header."""
+    lines = [l for l in note.raw_body.splitlines() if l.strip().startswith("|")]
+    if len(lines) < 2:
+        return []
+    split = lambda l: [c.strip() for c in re.split(r"(?<!\\)\|", l.strip())[1:-1]]
+    head = split(lines[0])
+    out = []
+    for l in lines[1:]:
+        if re.match(r"^\s*\|[\s:|-]+\|\s*$", l):
+            continue
+        cells = split(l)
+        out.append({h: (cells[i] if i < len(cells) else "") for i, h in enumerate(head)})
+    return out
+
+
+def pins_from_vault():
+    n = BY_NAME.get("Pins")
+    if not n:
+        return None
+    pins = []
+    for r in md_table(n):
+        name = r.get("Name", "").strip()
+        if not name:
+            continue
+        p = {"id": slug(name), "name": name, "category": r.get("Category", ""), "acquired": r.get("Got it", ""),
+             "where": r.get("Where", ""), "description": r.get("Story", "")}
+        m = re.search(r"!\[\[([^\]|\\]+)", r.get("Photo", ""))
+        if m:
+            got = image(m.group(1))
+            if got:
+                p["image"] = got[0]
+        for part in re.findall(r"(\w+):(.*?)(?=\s\w+:|$)", r.get("Badge", "")):
+            p[part[0]] = part[1].strip()
+        pins.append(p)
+    return pins
+
+
 def build_pins():
+    vault = pins_from_vault()
     src = ROOT / "pins" / "pins.json"
-    if not src.exists():
+    if vault is None and not src.exists():
         return
-    pins = json.loads(src.read_text(encoding="utf-8"))
+    pins = vault if vault is not None else json.loads(src.read_text(encoding="utf-8"))
     for p in pins:
         if p.get("image") and not p["image"].startswith(("/", "http")):
             local = ROOT / "pins" / p["image"]
@@ -908,6 +961,23 @@ COFFEE_JS = r"""
 def build_coffee(n):
     src = ROOT / "coffee" / "cafes.json"
     cafes = json.loads(src.read_text(encoding="utf-8")) if src.exists() else []
+    if "Cafes" in BY_NAME:
+        cafes = []
+        for r in md_table(BY_NAME["Cafes"]):
+            try:
+                lat, lng = float(r.get("Lat", "")), float(r.get("Lng", ""))
+            except ValueError:
+                continue
+            c = {"name": r.get("Name", ""), "where": r.get("Where", ""), "country": r.get("Country", ""),
+                 "lat": lat, "lng": lng, "status": "been" if r.get("Status", "").lower().startswith("been") else "list"}
+            if r.get("Visited"):
+                c["visited"] = r["Visited"]
+            if r.get("Approx", "").lower().startswith("y"):
+                c["approx"] = True
+            m = re.search(r"\[\[([^\]|]+)", r.get("Trip post", ""))
+            if m and resolve(m.group(1)):
+                c["post"] = resolve(m.group(1)).url
+            cafes.append(c)
     md = n.clean_body()
     intro, _, rest = md.partition("\n## ")
     rest = "## " + rest if rest else ""

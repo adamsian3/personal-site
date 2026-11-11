@@ -226,3 +226,4 @@ article.prose img { cursor: zoom-in; }
 .lightbox[hidden] { display: none; }
 .lightbox img { max-width: 100%; max-height: calc(100vh - 72px); width: auto; height: auto; object-fit: contain; border-radius: 2px; margin: 0; }
 .lightbox-hint { color: #E6EDEF; font-size: 13px; margin: 12px 0 0; opacity: .8; }
+.map-legend .dot.seen { border-color: var(--sea-deep); background: var(--sea-glass); margin-left: 12px; }
