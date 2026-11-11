@@ -320,7 +320,7 @@ def page(path_url, title, body, current=None, desc=None, label=None, dest=None):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v={CSS_V}">
 </head>
 <body>
 <header class="site-header"><div class="wrap">
@@ -349,6 +349,8 @@ def page(path_url, title, body, current=None, desc=None, label=None, dest=None):
     dest.write_text(doc, encoding="utf-8")
 
 
+import hashlib
+CSS_V = hashlib.md5((ROOT / "assets" / "style.css").read_bytes()).hexdigest()[:8]
 PAGES = []
 EMAIL = "adamsian3@gmail.com"
 
