@@ -260,6 +260,7 @@ def preprocess(text):
         return img_tag(target, width, "" if width else "full")
     text = re.sub(r"!\[\[([^\]]+)\]\]", embed, text)
 
+
     def link(m):
         inner = m.group(1).replace("\\|", "|")
         target, _, alias = inner.partition("|")
@@ -267,6 +268,12 @@ def preprocess(text):
         n = resolve(target)
         return f"[{label}]({n.url})" if n else label
     text = re.sub(r"\[\[([^\]]+)\]\]", link, text)
+    def callout(m):
+        title = (m.group(2) or m.group(1)).strip().capitalize()
+        inner = "\n".join(re.sub(r"^>\s?", "", l) for l in m.group(3).splitlines())
+        body = markdown.Markdown(extensions=["tables", "sane_lists"]).convert(inner)
+        return f'\n<aside class="callout"><p class="label">{esc(title)}</p>{body}</aside>\n'
+    text = re.sub(r"^> \[!(\w+)\][+-]? ?(.*)\n((?:>.*(?:\n|$))*)", callout, text, flags=re.M)
 
     lines, out = text.splitlines(), []
     for i, line in enumerate(lines):

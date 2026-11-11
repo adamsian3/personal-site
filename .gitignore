@@ -2,3 +2,5 @@
 __pycache__/
 missing-images.json
 preview.tgz
+public/__tpl.html
+public/404-tmp/
