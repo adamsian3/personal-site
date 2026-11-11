@@ -1,0 +1,230 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+.gm {
+  --ground: #121C23;
+  --panel: #1B2831;
+  --line: #2A3A44;
+  --text: #E6EDEF;
+  --muted: #A3B4BD;
+  --fjord: #3C6478;
+  --fjord-light: #8DB5C7;
+  --sea: #7FA9A1;
+  --sea-text: #8FC1B7;
+  --deep: #2F4A5C;
+  --moss: #436F67;
+  --sans: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: dark;
+}
+.gm * { box-sizing: border-box; }
+.gm { background: var(--ground); color: var(--text); font-family: var(--sans); font-size: 15px; line-height: 1.5; }
+ .gm .gwrap { max-width: 980px; margin: 0 auto; padding-block: 28px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 36px; }
+.gm a { color: inherit; }
+.gm a:focus-visible { outline: 2px solid var(--fjord-light); outline-offset: 2px; }
+.gm .mono { font-family: var(--mono); }
+.gm .muted { color: var(--muted); font-size: 13px; }
+.gm .lbl { font-family: var(--mono); font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--sea-text); margin: 0 0 12px; font-weight: 400; }
+.gm .panel { background: var(--panel); border: 1px solid var(--line); }
+.gm .tag { font-family: var(--mono); font-size: 11px; border: 1px solid var(--fjord); color: var(--fjord-light); padding: 1px 7px; white-space: nowrap; justify-self: start; }
+.gm .bar { height: 6px; background: var(--line); }
+.gm .bar i { display: block; height: 6px; background: var(--sea); }
+.gm nav { display: flex; justify-content: space-between; align-items: center; gap: 12px 24px; flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 16px; }
+.gm .mark { font-weight: 600; font-size: 20px; letter-spacing: -.03em; text-decoration: none; }
+.gm .mark b, .gm .dot { color: var(--sea); font-weight: 600; }
+.gm nav ul { display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; font-size: 14px; flex-wrap: wrap; }
+.gm nav ul a { color: var(--muted); text-decoration: none; }
+.gm nav ul a[aria-current] { color: var(--text); }
+.gm .player { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 20px; align-items: center; }
+.gm .avatar { width: 88px; height: 88px; background: var(--fjord); display: grid; place-items: center; font-size: 32px; font-weight: 600; letter-spacing: -.03em; }
+.gm .player-top { display: flex; justify-content: space-between; align-items: baseline; gap: 6px 16px; flex-wrap: wrap; }
+.gm .player h1 { font-size: 28px; font-weight: 600; letter-spacing: -.02em; margin: 0; line-height: 1.1; }
+.gm .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 12px; }
+.gm .stats b { display: block; font-family: var(--mono); font-weight: 500; font-size: 22px; font-variant-numeric: tabular-nums; }
+@media (max-width: 520px) {
+.gm .player { grid-template-columns: 1fr; }
+.gm .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.gm .links { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; }
+.gm .link { display: grid; gap: 2px; padding: 10px 14px; text-decoration: none; font-size: 14px; }
+.gm a.link:hover { border-color: var(--fjord); }
+.gm .link span { font-family: var(--mono); font-size: 12px; color: var(--muted); overflow-wrap: anywhere; }
+.gm .games { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.gm .game { padding: 14px; display: grid; gap: 10px; align-content: start; }
+.gm .cover { height: 84px; display: flex; align-items: flex-end; padding: 8px; }
+.gm .gbadge { font-family: var(--mono); font-size: 11px; padding: 2px 7px; }
+.gm .game-title { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+.gm .game-title h3 { margin: 0; font-size: 16px; font-weight: 600; }
+.gm .two { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+.gm .quests { padding: 16px; display: grid; gap: 12px; }
+.gm .q-head { display: flex; justify-content: space-between; gap: 10px; font-size: 15px; }
+.gm .q-head b { font-weight: 600; }
+.gm .q-head span { font-family: var(--mono); color: var(--sea-text); font-variant-numeric: tabular-nums; }
+.gm .seg { display: grid; gap: 4px; }
+.gm .seg div { display: grid; gap: 6px; min-width: 0; }
+.gm .seg i { height: 8px; background: var(--line); display: block; }
+.gm .seg .done i { background: var(--sea); }
+.gm .seg .now i { background: var(--fjord); }
+.gm .seg span { font-family: var(--mono); font-size: 11px; color: var(--muted); overflow-wrap: anywhere; }
+.gm .seg .now span { color: var(--text); }
+.gm .split { border-top: 1px solid var(--line); padding-top: 12px; }
+.gm .loadout { padding: 16px; display: grid; gap: 9px; font-size: 14px; }
+.gm .loadout div { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 12px; }
+.gm .loadout dt { font-family: var(--mono); font-size: 11.5px; color: var(--muted); padding-top: 2px; }
+.gm .loadout dd { margin: 0; text-align: right; }
+.gm .loadout dd small { display: block; color: var(--muted); font-size: 12.5px; }
+.gm dl { margin: 0; }
+.gm .hof { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; list-style: none; margin: 0; padding: 0; counter-reset: hof; }
+.gm .hof li { padding: 12px; display: grid; gap: 6px; align-content: start; counter-increment: hof; font-size: 14px; }
+.gm .hof li::before { content: counter(hof, decimal-leading-zero); font-family: var(--mono); color: var(--sea); font-size: 12px; }
+.gm .hof li:first-child { border-color: var(--fjord); }
+.gm .shelf { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; }
+.gm .shelf .game { gap: 8px; }
+.gm .shelf .cover { height: 56px; }
+.gm .shelf h3 { margin: 0; font-size: 15px; font-weight: 600; }
+.gm footer { border-top: 1px solid var(--line); padding-top: 16px; display: flex; justify-content: space-between; gap: 8px 20px; flex-wrap: wrap; }
+@media (prefers-reduced-motion: no-preference) {
+.gm a.link { transition: border-color .15s; }
+}
+
+.gm { padding-block: 8px 24px; }
+.gm .gwrap { padding-top: 32px; }
+.gm .more { font-family: var(--mono); font-size: 12px; color: var(--sea-text); text-decoration: none; }
+.gm .more:hover { text-decoration: underline; }
+.gm h1, .gm h2, .gm h3 { color: var(--text); }
+.gm h2.lbl { line-height: 16px; font-weight: 400; }
+.gm section { margin: 0; }
+.gm .stats { border: 0; margin: 12px 0 0; }
+.gm .muted { color: var(--muted); }
+</style>
+<div class="gm">
+<div class="gwrap">
+
+  <section class="player" aria-label="Player card">
+    <div class="avatar" aria-hidden="true"><span>ia<span class="dot">.</span></span></div>
+    <div>
+      <div class="player-top">
+        <h1>EpicPlants</h1>
+        <span class="mono muted">LVL 15 · 2,193 / 2,200 XP</span>
+      </div>
+      <div class="bar" style="margin-top:10px" role="img" aria-label="99% of the way to level 16"><i style="width:99%"></i></div>
+      <div class="stats">
+        <div><b>219</b><span class="muted">Steam games</span></div>
+        <div><b>11</b><span class="muted">Steam badges</span></div>
+        <div><b>PC</b><span class="muted">+ PS5 Pro</span></div>
+        <div><b>34</b><span class="muted">screenshots</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-links">
+    <h2 class="lbl" id="h-links">Find me on</h2>
+    <div class="links">
+      <a class="link panel" href="https://steamcommunity.com/id/adamsian3">Steam<span>EpicPlants</span></a>
+      <a class="link panel" href="https://profile.playstation.com/adamsian3">PlayStation<span>adamsian3</span></a>
+      <a class="link panel" href="https://www.xbox.com/play/user/IanMartinAdams">Xbox<span>IanMartinAdams</span></a>
+      <a class="link panel" href="https://www.twitch.tv/ianadams3">Twitch<span>ianadams3</span></a>
+      <a class="link panel" href="https://www.youtube.com/@IanMartinAdams">YouTube<span>@IanMartinAdams</span></a>
+      <div class="link panel">Discord<span>ianmartinadams</span></div>
+      <div class="link panel">EA<span>IanAdams</span></div>
+      <div class="link panel">Epic Games<span>IanAdams</span></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-now">
+    <h2 class="lbl" id="h-now">Now playing</h2>
+    <div class="games">
+      <article class="game panel">
+        <div class="cover" style="background:var(--fjord)"><span class="gbadge" style="background:var(--sea);color:var(--ground)">100% COMPLETE</span></div>
+        <div class="game-title"><h3>Dune: Awakening</h3><span class="tag">PC</span></div>
+        <span class="mono muted">74 / 74 achievements</span>
+        <div class="bar"><i style="width:100%"></i></div>
+      </article>
+      <article class="game panel">
+        <div class="cover" style="background:var(--deep)"><span class="gbadge" style="border:1px solid var(--fjord-light);color:var(--fjord-light)">NEW</span></div>
+        <div class="game-title"><h3>Grand Theft Auto VI</h3><span class="tag">PS5 Pro</span></div>
+        <span class="mono muted">Just started</span>
+      </article>
+      <article class="game panel">
+        <div class="cover" style="background:var(--moss)"></div>
+        <div class="game-title"><h3>Valheim</h3><span class="tag">PC</span></div>
+        <span class="mono muted">With the squad</span>
+      </article>
+    </div>
+  </section>
+
+  <div class="two">
+    <section aria-labelledby="h-quests">
+      <h2 class="lbl" id="h-quests">Quest log</h2>
+      <div class="quests panel">
+        <div class="q-head"><b>Replay every GTA before VI</b><span>3 / 6</span></div>
+        <div class="seg" style="grid-template-columns:repeat(6,minmax(0,1fr))">
+          <div class="done"><i></i><span>III</span></div>
+          <div class="done"><i></i><span>Vice City</span></div>
+          <div class="done"><i></i><span>San Andreas</span></div>
+          <div class="now"><i></i><span>IV · now</span></div>
+          <div><i></i><span>V</span></div>
+          <div><i></i><span>VI</span></div>
+        </div>
+        <div class="q-head split"><b>Uncharted series</b><span>3 / 5</span></div>
+        <div class="seg" style="grid-template-columns:repeat(5,minmax(0,1fr))">
+          <div class="done"><i></i><span>1</span></div>
+          <div class="done"><i></i><span>2</span></div>
+          <div class="done"><i></i><span>3</span></div>
+          <div class="now"><i></i><span>4 · next</span></div>
+          <div><i></i><span>Lost Legacy</span></div>
+        </div>
+        <p class="muted split" style="margin:0">Side quests: 29 games in the backlog · <a class="more" href="/gaming/games-to-play/">See the list</a></p>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-loadout">
+      <h2 class="lbl" id="h-loadout">Loadout</h2>
+      <dl class="loadout panel">
+        <div><dt>GPU</dt><dd>NVIDIA RTX 4080 Super 16GB</dd></div>
+        <div><dt>CPU</dt><dd>AMD Ryzen 5 7600X</dd></div>
+        <div><dt>RAM</dt><dd>64GB DDR5-6000 CL30</dd></div>
+        <div><dt>CASE</dt><dd>A4-H2O mini-ITX</dd></div>
+        <div><dt>DISPLAY 1</dt><dd>ASUS ROG PG32UCDM<small>32" 4K 240Hz OLED</small></dd></div>
+        <div><dt>DISPLAY 2</dt><dd>LG 27GL83A<small>27" 1440p 144Hz</small></dd></div>
+        <div><dt>KEYBOARD</dt><dd>Wooting 60HE</dd></div>
+        <div><dt>MOUSE</dt><dd>Logitech PRO X SUPERLIGHT</dd></div>
+        <div><dt>CONSOLE</dt><dd>PlayStation 5 Pro</dd></div>
+        <div><dt></dt><dd><a class="more" href="/gaming/pc-setup/">Full setup</a></dd></div>
+      </dl>
+    </section>
+  </div>
+
+  <section aria-labelledby="h-hof">
+    <h2 class="lbl" id="h-hof">Hall of fame</h2>
+    <ol class="hof">
+      <li class="panel">Dune: Awakening</li>
+      <li class="panel">Red Dead Redemption 2</li>
+      <li class="panel">Grand Theft Auto V</li>
+      <li class="panel">Valheim</li>
+      <li class="panel">Dyson Sphere Program</li>
+      <li class="panel">Age of Empires II</li>
+      <li class="panel">Minecraft</li>
+      <li class="panel">Baldur's Gate 3</li>
+      <li class="panel">Star Citizen</li>
+      <li class="panel">Overwatch</li>
+      <li class="panel">Cities: Skylines</li>
+      <li class="panel">Days Gone</li>
+      <li class="panel">Hogwarts Legacy</li>
+      <li class="panel">TimeSplitters 2 <span class="tag">PS2</span></li>
+      <li class="panel">Crash Bandicoot 2: Cortex Strikes Back <span class="tag">PS2</span></li>
+      <li class="panel">The Simpsons: Hit &amp; Run</li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="h-ps">
+    <h2 class="lbl" id="h-ps">PlayStation</h2>
+    <div class="shelf">
+      <article class="game panel"><div class="cover" style="background:var(--deep)"></div><h3>Grand Theft Auto VI</h3><span class="tag">PS5 Pro</span></article>
+      <article class="game panel"><div class="cover" style="background:var(--fjord)"></div><h3>Super Stardust Ultra</h3><span class="tag">PS4</span></article>
+      <article class="game panel"><div class="cover" style="background:var(--moss)"></div><h3>The Last of Us Remastered</h3><span class="tag">PS4</span></article>
+      <article class="game panel"><div class="cover" style="background:#1F3442;border:1px solid var(--line)"></div><h3>Uncharted: The Nathan Drake Collection</h3><span class="tag">PS4</span></article>
+    </div>
+  </section>
+  <p class="muted" style="margin:0">Steam stats as of 11 Nov 2026</p>
+</div>
+</div>
