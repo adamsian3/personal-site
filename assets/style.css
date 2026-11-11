@@ -141,3 +141,55 @@ a.card:hover { border-color: var(--fjord); }
   .list li { flex-direction: column; gap: 2px; }
   .nav { gap: 16px; }
 }
+
+/* Pins: a cork board inside the Fjord page */
+.pins-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; }
+.pin-tools { display: grid; gap: 16px; margin: 8px 0 24px; }
+.pin-search { display: grid; gap: 6px; max-width: 420px; }
+.pin-search input { font: 400 16px/24px var(--font); padding: 10px 12px; border: 1px solid var(--line); border-radius: 2px; background: var(--paper); color: var(--ink); width: 100%; }
+.pin-search input:focus { outline: 2px solid var(--fjord); outline-offset: 0; border-color: var(--fjord); }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.pin-empty { grid-column: 1 / -1; color: #1F3442; background: rgba(247,249,250,.85); padding: 8px 14px; border-radius: 2px; justify-self: center; align-self: start; }
+.chip { font: 400 14px/1 var(--font); padding: 8px 12px; border-radius: 2px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--fjord); color: var(--on-fjord); border-color: var(--fjord); }
+.cork-frame { padding: 12px; border-radius: 4px; background: #5E4630; box-shadow: inset 0 0 0 1px rgba(0,0,0,.25); }
+.board {
+  border-radius: 2px; padding: 28px 18px 36px; min-height: 360px;
+  background-color: #C89A63;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(0,0,0,.10) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 70% 60%, rgba(255,255,255,.10) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 40% 80%, rgba(0,0,0,.08) 0 1.2px, transparent 1.8px),
+    radial-gradient(ellipse at 50% 40%, #C89A63, #B5844F);
+  background-size: 7px 7px, 11px 11px, 13px 13px, 100% 100%;
+  box-shadow: inset 0 2px 12px rgba(0,0,0,.35);
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 24px 14px; justify-items: center; align-items: center;
+}
+.pin { --r: 0deg; --dx: 0px; --dy: 0px; border: 0; padding: 0; background: none; cursor: pointer; display: grid; justify-items: center; gap: 6px;
+  transform: translate(var(--dx), var(--dy)) rotate(var(--r)); transition: transform .18s ease; width: 112px; color: inherit; font-family: var(--font); }
+.pin:hover { transform: translate(var(--dx), calc(var(--dy) - 4px)) rotate(0deg) scale(1.06); }
+.badge { width: 84px; height: 84px; display: grid; place-items: center; text-align: center;
+  background: var(--bg); color: var(--fg); border: 5px solid var(--rim);
+  box-shadow: 0 6px 8px rgba(0,0,0,.35), inset 0 2px 0 rgba(255,255,255,.35), inset 0 -3px 0 rgba(0,0,0,.18);
+  font: 600 11px/1.1 var(--font); letter-spacing: .03em; text-transform: uppercase; padding: 8px; overflow: hidden; }
+.badge.long { font-size: 9.5px; } .badge.xlong { font-size: 8.5px; }
+.badge.circle { border-radius: 50%; } .badge.shield { border-radius: 14px 14px 42px 42px; } .badge.square { border-radius: 14px; }
+.badge.star { border-radius: 50%; border-style: double; border-width: 7px; }
+.badge img { width: 100%; height: 100%; object-fit: contain; border-radius: 0; }
+.badge.photo { background: transparent; border: 0; box-shadow: none; padding: 0; filter: drop-shadow(0 6px 6px rgba(0,0,0,.35)); }
+.pin-tag { font-size: 12px; line-height: 16px; color: #1F3442; max-width: 112px; text-align: center; background: rgba(247,249,250,.85); padding: 2px 8px; border-radius: 2px; }
+dialog#dlg { border: 0; padding: 0; width: min(420px, calc(100vw - 32px)); background: var(--paper); color: var(--ink); border-radius: 4px; box-shadow: 0 30px 60px rgba(0,0,0,.35); }
+dialog#dlg::backdrop { background: rgba(18,28,35,.6); }
+.pin-card { display: grid; gap: 14px; padding: 28px 24px 24px; position: relative; border-top: 4px solid var(--sea-glass); }
+.pin-card .badge { width: 120px; height: 120px; font-size: 15px; justify-self: center; }
+.pin-card .badge.long { font-size: 13px; } .pin-card .badge.xlong { font-size: 11px; }
+.pin-card h2 { margin: 0; }
+.pin-card .meta { display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; margin: 0; }
+.pin-card dt { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--sea-deep); font-weight: 600; padding-top: 4px; }
+.pin-card dd { margin: 0; }
+.pin-card .story { margin: 0; border-top: 1px solid var(--line); padding-top: 12px; }
+.pin-card .close { position: absolute; top: 10px; right: 10px; width: 36px; height: 36px; border-radius: 2px; border: 1px solid var(--line); background: var(--snow); color: var(--ink); font: 400 20px/1 var(--font); cursor: pointer; }
+.pin-nav { display: flex; justify-content: space-between; gap: 10px; }
+.pin-nav button { font: 400 14px/1 var(--font); padding: 9px 14px; border-radius: 2px; border: 1px solid var(--line); background: var(--snow); color: var(--ink); cursor: pointer; }
+@media (prefers-reduced-motion: reduce) { .pin, .pin:hover { transition: none; transform: none; } }
+@media (max-width: 480px) { .board { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 22px 8px; } .pin { width: 96px; } .badge { width: 74px; height: 74px; } }

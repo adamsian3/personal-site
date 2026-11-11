@@ -337,7 +337,7 @@ def page(path_url, title, body, current=None, desc=None, label=None, dest=None):
 </div></section>
 <footer class="site-footer"><div class="wrap">
 <div>© {YEAR} Ian Adams · {esc(STRAP)} · Views are my own</div>
-<nav aria-label="Footer"><a href="/gaming/">Gaming</a><a href="/Links/">Links</a><a href="https://www.linkedin.com/in/ianmartinadams/" rel="noopener">LinkedIn</a><a href="https://www.instagram.com/ianadams3/" rel="noopener">Instagram</a><a href="https://x.com/ianmartinadams" rel="noopener">X</a></nav>
+<nav aria-label="Footer"><a href="/Pins/">Pins</a><a href="/gaming/">Gaming</a><a href="/Links/">Links</a><a href="https://www.linkedin.com/in/ianmartinadams/" rel="noopener">LinkedIn</a><a href="https://www.instagram.com/ianadams3/" rel="noopener">Instagram</a><a href="https://x.com/ianmartinadams" rel="noopener">X</a></nav>
 </div></footer>
 </body>
 </html>
@@ -617,6 +617,111 @@ def build_links(n):
     page(n.url, "Links", body)
 
 
+PINS_JS = r"""
+(() => {
+  const pins = JSON.parse(document.getElementById('pins-data').textContent);
+  const board = document.getElementById('board'), filters = document.getElementById('filters');
+  const count = document.getElementById('pin-count'), dlg = document.getElementById('dlg');
+  const search = document.getElementById('pin-search');
+  let current = 'All', visible = pins, openIndex = -1;
+  const norm = t => (t || '').toLowerCase();
+  const hash = s => [...s].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);
+  const jitter = (id, salt, range) => ((hash(id + salt) % 1000) / 1000 * 2 - 1) * range;
+  function badge(p) {
+    const el = document.createElement('div');
+    el.className = 'badge ' + (p.image ? 'photo' : (p.shape || 'circle'));
+    el.style.setProperty('--bg', p.bg || '#ddd'); el.style.setProperty('--rim', p.rim || '#999'); el.style.setProperty('--fg', p.fg || '#222');
+    if (p.image) { const img = document.createElement('img'); img.src = p.image; img.alt = p.name; el.append(img); }
+    else {
+      const txt = p.label || p.name, longest = Math.max(...txt.split(' ').map(w => w.length));
+      if (longest > 7 || txt.length > 12) el.classList.add(longest > 9 ? 'xlong' : 'long');
+      el.textContent = txt; el.setAttribute('aria-hidden', 'true');
+    }
+    return el;
+  }
+  ['All', ...new Set(pins.map(p => p.category))].forEach(c => {
+    const b = document.createElement('button');
+    b.className = 'chip'; b.type = 'button'; b.textContent = c;
+    b.addEventListener('click', () => { current = c; render(); });
+    filters.append(b);
+  });
+  function render() {
+    const q = norm(search.value).trim();
+    visible = pins.filter(p => (current === 'All' || p.category === current) &&
+      (!q || [p.name, p.label, p.where, p.category, p.description, p.acquired].some(f => norm(f).includes(q))));
+    filters.querySelectorAll('.chip').forEach(b => b.setAttribute('aria-pressed', String(b.textContent === current)));
+    count.textContent = visible.length + (visible.length === 1 ? ' pin' : ' pins');
+    board.replaceChildren();
+    if (!visible.length) { const e = document.createElement('p'); e.className = 'pin-empty'; e.textContent = 'No pins match that search.'; board.append(e); return; }
+    visible.forEach((p, i) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'pin'; b.setAttribute('aria-label', p.name + ', open details');
+      b.style.setProperty('--r', jitter(p.id, 'r', 9).toFixed(1) + 'deg');
+      b.style.setProperty('--dx', jitter(p.id, 'x', 8).toFixed(1) + 'px');
+      b.style.setProperty('--dy', jitter(p.id, 'y', 8).toFixed(1) + 'px');
+      b.title = p.name;
+      b.append(badge(p)); b.addEventListener('click', () => open(i)); board.append(b);
+    });
+  }
+  function row(id, val) { const dd = document.getElementById(id); dd.textContent = val || ''; dd.hidden = dd.previousElementSibling.hidden = !val; }
+  function open(i) {
+    openIndex = (i + visible.length) % visible.length;
+    const p = visible[openIndex];
+    document.getElementById('dlg-badge').replaceChildren(badge(p));
+    document.getElementById('dlg-title').textContent = p.name;
+    row('dlg-when', p.acquired); row('dlg-where', p.where); row('dlg-cat', p.category);
+    const s = document.getElementById('dlg-story'); s.textContent = p.description || ''; s.hidden = !p.description;
+    if (!dlg.open) dlg.showModal();
+  }
+  document.getElementById('close').addEventListener('click', () => dlg.close());
+  document.getElementById('prev').addEventListener('click', () => open(openIndex - 1));
+  document.getElementById('next').addEventListener('click', () => open(openIndex + 1));
+  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('keydown', e => { if (e.key === 'ArrowRight') open(openIndex + 1); if (e.key === 'ArrowLeft') open(openIndex - 1); });
+  search.addEventListener('input', render);
+  render();
+})();
+"""
+
+
+def build_pins():
+    src = ROOT / "pins" / "pins.json"
+    if not src.exists():
+        return
+    pins = json.loads(src.read_text(encoding="utf-8"))
+    for p in pins:
+        if p.get("image") and not p["image"].startswith(("/", "http")):
+            r = image(Path(p["image"]).name)
+            p["image"] = r[0] if r else None
+        for k in ("name", "description", "where", "acquired", "label"):
+            if isinstance(p.get(k), str):
+                p[k] = no_dash(p[k])
+    data = json.dumps(pins, ensure_ascii=False).replace("</", "<\\/")
+    body = f"""<div class="wrap">
+<header class="page-head pins-head">
+<div><p class="label">Collection</p><h1>Pins</h1>
+<p class="muted" style="max-width:60ch">Enamel pins collected over the years from trips, gigs, jobs and the odd football shop. Tap a pin to see where it came from.</p></div>
+<p class="muted small" id="pin-count"></p>
+</header>
+<div class="pin-tools">
+<label class="pin-search"><span class="label" style="margin:0">Search</span><input type="search" id="pin-search" placeholder="Try West Ham, Dublin or Sport" autocomplete="off"></label>
+<div class="filters" id="filters" role="group" aria-label="Filter pins"></div>
+</div>
+<div class="cork-frame"><div class="board" id="board" aria-live="polite"></div></div>
+</div>
+<dialog id="dlg" aria-labelledby="dlg-title"><div class="pin-card">
+<button class="close" id="close" aria-label="Close">×</button>
+<div id="dlg-badge"></div>
+<h2 id="dlg-title"></h2>
+<dl class="meta"><dt>Got it</dt><dd id="dlg-when"></dd><dt>Where</dt><dd id="dlg-where"></dd><dt>Category</dt><dd id="dlg-cat"></dd></dl>
+<p class="story" id="dlg-story"></p>
+<div class="pin-nav"><button id="prev">← Previous</button><button id="next">Next →</button></div>
+</div></dialog>
+<script type="application/json" id="pins-data">{data}</script>
+<script>{PINS_JS}</script>"""
+    page("/Pins/", "Pins", body, desc="Ian Adams' enamel pin collection on a digital corkboard.")
+
+
 def extras():
     shutil.copytree(ROOT / "assets", OUT / "assets", dirs_exist_ok=True)
     (OUT / "favicon.svg").write_text(
@@ -664,6 +769,7 @@ def main():
         if nm in BY_NAME:
             build_generic(BY_NAME[nm], "Gaming")
     build_links(BY_NAME["Links"])
+    build_pins()
     build_404()
     extras()
     print(f"Built {len(PAGES)} pages into {OUT}")

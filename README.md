@@ -23,6 +23,7 @@ Cloudflare Pages publishes the `public/` folder on every push.
 | Blog/Newsletters | `/Blog/Newsletters/` (only issues linked from the index note are published) |
 | About/Gaming | `/gaming/` |
 | Links | `/Links/` |
+| `pins/pins.json` (in this folder) | `/Pins/` |
 
 - Posts keep the `permalink` from their frontmatter, so old Obsidian Publish links still work.
 - `By Ian Adams`, `Date Posted`, `Location`, `Visited` and `Tags` lines become the post header.

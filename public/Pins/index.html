@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pins · Ian Adams</title>
+<meta name="description" content="Ian Adams&#x27; enamel pin collection on a digital corkboard.">
+<link rel="canonical" href="https://ianadams.media/Pins/">
+<meta property="og:title" content="Pins · Ian Adams">
+<meta property="og:description" content="Ian Adams&#x27; enamel pin collection on a digital corkboard.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ianadams.media/Pins/">
+<meta name="theme-color" content="#F7F9FA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121C23" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<header class="site-header"><div class="wrap">
+<a class="mark" href="/" aria-label="Ian Adams, home">ian adams<span class="dot">.</span></a>
+<nav class="nav" aria-label="Main"><a href="/about/">About</a><a href="/Blog/TechMedia/">Tech &amp; Media</a><a href="/Blog/Travel/">Travel</a><a href="/Blog/Newsletters/">Newsletter</a></nav>
+</div></header>
+<main>
+<div class="wrap">
+<header class="page-head pins-head">
+<div><p class="label">Collection</p><h1>Pins</h1>
+<p class="muted" style="max-width:60ch">Enamel pins collected over the years from trips, gigs, jobs and the odd football shop. Tap a pin to see where it came from.</p></div>
+<p class="muted small" id="pin-count"></p>
+</header>
+<div class="pin-tools">
+<label class="pin-search"><span class="label" style="margin:0">Search</span><input type="search" id="pin-search" placeholder="Try West Ham, Dublin or Sport" autocomplete="off"></label>
+<div class="filters" id="filters" role="group" aria-label="Filter pins"></div>
+</div>
+<div class="cork-frame"><div class="board" id="board" aria-live="polite"></div></div>
+</div>
+<dialog id="dlg" aria-labelledby="dlg-title"><div class="pin-card">
+<button class="close" id="close" aria-label="Close">×</button>
+<div id="dlg-badge"></div>
+<h2 id="dlg-title"></h2>
+<dl class="meta"><dt>Got it</dt><dd id="dlg-when"></dd><dt>Where</dt><dd id="dlg-where"></dd><dt>Category</dt><dd id="dlg-cat"></dd></dl>
+<p class="story" id="dlg-story"></p>
+<div class="pin-nav"><button id="prev">← Previous</button><button id="next">Next →</button></div>
+</div></dialog>
+<script type="application/json" id="pins-data">[{"id": "west-ham-99-crest-christmas", "name": "West Ham 99 Crest Christmas Pin", "category": "Football", "acquired": "10 Nov 2026", "where": "West Ham Stadium Store, Stratford", "description": "Picked up on a trip to the stadium store, the newest pin on the board.", "shape": "shield", "bg": "#7a263a", "rim": "#c9a227", "fg": "#f4e3b0", "label": "West Ham 99", "isNew": true}, {"id": "poppy-2026", "name": "Poppy Badge 2026", "category": "Football", "acquired": "10 Nov 2026", "where": "West Ham Stadium Store, Stratford", "description": "", "shape": "circle", "bg": "#c8102e", "rim": "#1a1a1a", "fg": "#ffffff", "label": "Poppy 2026", "isNew": true}, {"id": "hard-rock-uk", "name": "Hard Rock Cafe, UK flag", "category": "Places", "acquired": "Before 2021", "where": "Hard Rock Cafe", "description": "", "shape": "circle", "bg": "#1d3c78", "rim": "#d8b45a", "fg": "#ffffff", "label": "Hard Rock UK"}, {"id": "hard-rock-orlando", "name": "Hard Rock Cafe Orlando", "category": "Places", "acquired": "Before 2021", "where": "Orlando, Florida", "description": "", "shape": "circle", "bg": "#1c1c1c", "rim": "#d8b45a", "fg": "#f7d774", "label": "Hard Rock Orlando"}, {"id": "london-dungeon", "name": "The London Dungeon", "category": "Places", "acquired": "Before 2021", "where": "London", "description": "", "shape": "shield", "bg": "#2b2b2b", "rim": "#8f1d1d", "fg": "#e8d9b5", "label": "London Dungeon"}, {"id": "tower-gate", "name": "Tower Gate", "category": "Places", "acquired": "Before 2021", "where": "", "description": "", "shape": "square", "bg": "#4d5b6a", "rim": "#c0c6cc", "fg": "#ffffff", "label": "Tower Gate"}, {"id": "temple-bar", "name": "Temple Bar", "category": "Places", "acquired": "Before 2021", "where": "Dublin", "description": "", "shape": "circle", "bg": "#a5161d", "rim": "#e9c46a", "fg": "#fff4d6", "label": "Temple Bar"}, {"id": "ireland", "name": "Ireland", "category": "Places", "acquired": "Before 2021", "where": "Ireland", "description": "", "shape": "circle", "bg": "#169b62", "rim": "#ff883e", "fg": "#ffffff", "label": "Ireland"}, {"id": "scotland", "name": "Scotland", "category": "Places", "acquired": "Before 2021", "where": "Scotland", "description": "", "shape": "shield", "bg": "#005eb8", "rim": "#ffffff", "fg": "#ffffff", "label": "Scots"}, {"id": "yorkshire", "name": "Yorkshire", "category": "Places", "acquired": "Before 2021", "where": "Yorkshire", "description": "", "shape": "circle", "bg": "#ffffff", "rim": "#1f5aa6", "fg": "#1f5aa6", "label": "Yorkshire"}, {"id": "york-museum", "name": "York museum", "category": "Places", "acquired": "Before 2021", "where": "York", "description": "", "shape": "square", "bg": "#5b3a29", "rim": "#d9b98c", "fg": "#f6ead6", "label": "York Museum"}, {"id": "mexico", "name": "Mexico", "category": "Places", "acquired": "Before 2021", "where": "Mexico", "description": "", "shape": "circle", "bg": "#006847", "rim": "#ce1126", "fg": "#ffffff", "label": "Mexico"}, {"id": "millennium-dome", "name": "Millennium Dome 2000", "category": "Places", "acquired": "2000", "where": "Greenwich, London", "description": "", "shape": "circle", "bg": "#e7e2d5", "rim": "#d6372b", "fg": "#1f3a8a", "label": "2000 Dome"}, {"id": "team-gb-gold", "name": "Team GB, gold", "category": "Sport", "acquired": "Before 2021", "where": "", "description": "", "shape": "star", "bg": "#1a2d6b", "rim": "#d4af37", "fg": "#ffffff", "label": "Team GB"}, {"id": "korea-olympic", "name": "Korea Olympic", "category": "Sport", "acquired": "Before 2021", "where": "", "description": "", "shape": "circle", "bg": "#ffffff", "rim": "#0047a0", "fg": "#cd2e3a", "label": "Korea Olympic"}, {"id": "sports-gold", "name": "Sports pin, gold", "category": "Sport", "acquired": "Before 2021", "where": "", "description": "", "shape": "circle", "bg": "#d4af37", "rim": "#8c6d1f", "fg": "#3b2b06", "label": "Gold"}, {"id": "sports-silver", "name": "Sports pin, silver", "category": "Sport", "acquired": "Before 2021", "where": "", "description": "", "shape": "circle", "bg": "#c9ccd1", "rim": "#7d828a", "fg": "#2c2f33", "label": "Silver"}, {"id": "sports-bronze", "name": "Sports pin, bronze", "category": "Sport", "acquired": "Before 2021", "where": "", "description": "", "shape": "circle", "bg": "#b0703a", "rim": "#6e4220", "fg": "#fff1e0", "label": "Bronze"}, {"id": "coca-cola-uk", "name": "Coca-Cola UK", "category": "Brands & work", "acquired": "Before 2021", "where": "", "description": "", "shape": "circle", "bg": "#e41e2b", "rim": "#ffffff", "fg": "#ffffff", "label": "Coca-Cola UK"}, {"id": "g4s", "name": "G4S", "category": "Brands & work", "acquired": "Before 2021", "where": "From my time as a G4S security guard", "description": "", "shape": "square", "bg": "#d71920", "rim": "#ffffff", "fg": "#ffffff", "label": "G4S"}, {"id": "guinness", "name": "Guinness", "category": "Brands & work", "acquired": "Before 2021", "where": "", "description": "", "shape": "shield", "bg": "#111111", "rim": "#c9a227", "fg": "#f2e6c4", "label": "Guinness"}, {"id": "bt-london-live", "name": "BT London Live", "category": "Brands & work", "acquired": "2012?", "where": "London", "description": "", "shape": "circle", "bg": "#5514b4", "rim": "#ffffff", "fg": "#ffffff", "label": "BT London Live"}, {"id": "stripe", "name": "Stripe", "category": "Brands & work", "acquired": "Before 2021", "where": "", "description": "", "shape": "square", "bg": "#635bff", "rim": "#ffffff", "fg": "#ffffff", "label": "Stripe"}, {"id": "bronze-dofe", "name": "Bronze DofE", "category": "Brands & work", "acquired": "School years", "where": "Duke of Edinburgh's Award", "description": "", "shape": "circle", "bg": "#a0622d", "rim": "#5a3415", "fg": "#fff1e0", "label": "Bronze DofE"}, {"id": "bucks-welcome", "name": "Bucks welcome", "category": "Brands & work", "acquired": "University", "where": "Buckinghamshire New University", "description": "", "shape": "square", "bg": "#1d1d1b", "rim": "#e5007e", "fg": "#ffffff", "label": "Bucks Welcome"}, {"id": "jurassic-park", "name": "Jurassic Park", "category": "Film, TV & games", "acquired": "Before 2021", "where": "", "description": "", "shape": "circle", "bg": "#d32f2f", "rim": "#f4c20d", "fg": "#1b1b1b", "label": "Jurassic Park"}, {"id": "westworld", "name": "Westworld", "category": "Film, TV & games", "acquired": "Before 2021", "where": "", "description": "", "shape": "circle", "bg": "#e9e4da", "rim": "#2a2a2a", "fg": "#2a2a2a", "label": "Westworld"}, {"id": "hawkins", "name": "Hawkins", "category": "Film, TV & games", "acquired": "Before 2021", "where": "", "description": "", "shape": "square", "bg": "#0d0d0d", "rim": "#c1121f", "fg": "#e63946", "label": "Hawkins"}, {"id": "overwatch", "name": "Overwatch", "category": "Film, TV & games", "acquired": "Before 2021", "where": "", "description": "", "shape": "circle", "bg": "#f99e1a", "rim": "#ffffff", "fg": "#ffffff", "label": "Overwatch"}, {"id": "waitress", "name": "Waitress", "category": "Film, TV & games", "acquired": "Before 2021", "where": "West End musical", "description": "", "shape": "circle", "bg": "#f7d6e0", "rim": "#b5385b", "fg": "#6b1f35", "label": "Waitress"}, {"id": "flamingo", "name": "Flamingo", "category": "Just for fun", "acquired": "Before 2021", "where": "", "description": "", "shape": "circle", "bg": "#ff8fb1", "rim": "#ffffff", "fg": "#5a1030", "label": "Flamingo"}, {"id": "lizard", "name": "Lizard", "category": "Just for fun", "acquired": "Before 2021", "where": "", "description": "", "shape": "circle", "bg": "#3a9d5d", "rim": "#f2e94e", "fg": "#ffffff", "label": "Lizard"}, {"id": "snail", "name": "Snail", "category": "Just for fun", "acquired": "Before 2021", "where": "", "description": "", "shape": "circle", "bg": "#e8c07d", "rim": "#6b4423", "fg": "#3d2412", "label": "Snail"}]</script>
+<script>
+(() => {
+  const pins = JSON.parse(document.getElementById('pins-data').textContent);
+  const board = document.getElementById('board'), filters = document.getElementById('filters');
+  const count = document.getElementById('pin-count'), dlg = document.getElementById('dlg');
+  const search = document.getElementById('pin-search');
+  let current = 'All', visible = pins, openIndex = -1;
+  const norm = t => (t || '').toLowerCase();
+  const hash = s => [...s].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);
+  const jitter = (id, salt, range) => ((hash(id + salt) % 1000) / 1000 * 2 - 1) * range;
+  function badge(p) {
+    const el = document.createElement('div');
+    el.className = 'badge ' + (p.image ? 'photo' : (p.shape || 'circle'));
+    el.style.setProperty('--bg', p.bg || '#ddd'); el.style.setProperty('--rim', p.rim || '#999'); el.style.setProperty('--fg', p.fg || '#222');
+    if (p.image) { const img = document.createElement('img'); img.src = p.image; img.alt = p.name; el.append(img); }
+    else {
+      const txt = p.label || p.name, longest = Math.max(...txt.split(' ').map(w => w.length));
+      if (longest > 7 || txt.length > 12) el.classList.add(longest > 9 ? 'xlong' : 'long');
+      el.textContent = txt; el.setAttribute('aria-hidden', 'true');
+    }
+    return el;
+  }
+  ['All', ...new Set(pins.map(p => p.category))].forEach(c => {
+    const b = document.createElement('button');
+    b.className = 'chip'; b.type = 'button'; b.textContent = c;
+    b.addEventListener('click', () => { current = c; render(); });
+    filters.append(b);
+  });
+  function render() {
+    const q = norm(search.value).trim();
+    visible = pins.filter(p => (current === 'All' || p.category === current) &&
+      (!q || [p.name, p.label, p.where, p.category, p.description, p.acquired].some(f => norm(f).includes(q))));
+    filters.querySelectorAll('.chip').forEach(b => b.setAttribute('aria-pressed', String(b.textContent === current)));
+    count.textContent = visible.length + (visible.length === 1 ? ' pin' : ' pins');
+    board.replaceChildren();
+    if (!visible.length) { const e = document.createElement('p'); e.className = 'pin-empty'; e.textContent = 'No pins match that search.'; board.append(e); return; }
+    visible.forEach((p, i) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'pin'; b.setAttribute('aria-label', p.name + ', open details');
+      b.style.setProperty('--r', jitter(p.id, 'r', 9).toFixed(1) + 'deg');
+      b.style.setProperty('--dx', jitter(p.id, 'x', 8).toFixed(1) + 'px');
+      b.style.setProperty('--dy', jitter(p.id, 'y', 8).toFixed(1) + 'px');
+      b.title = p.name;
+      b.append(badge(p)); b.addEventListener('click', () => open(i)); board.append(b);
+    });
+  }
+  function row(id, val) { const dd = document.getElementById(id); dd.textContent = val || ''; dd.hidden = dd.previousElementSibling.hidden = !val; }
+  function open(i) {
+    openIndex = (i + visible.length) % visible.length;
+    const p = visible[openIndex];
+    document.getElementById('dlg-badge').replaceChildren(badge(p));
+    document.getElementById('dlg-title').textContent = p.name;
+    row('dlg-when', p.acquired); row('dlg-where', p.where); row('dlg-cat', p.category);
+    const s = document.getElementById('dlg-story'); s.textContent = p.description || ''; s.hidden = !p.description;
+    if (!dlg.open) dlg.showModal();
+  }
+  document.getElementById('close').addEventListener('click', () => dlg.close());
+  document.getElementById('prev').addEventListener('click', () => open(openIndex - 1));
+  document.getElementById('next').addEventListener('click', () => open(openIndex + 1));
+  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('keydown', e => { if (e.key === 'ArrowRight') open(openIndex + 1); if (e.key === 'ArrowLeft') open(openIndex - 1); });
+  search.addEventListener('input', render);
+  render();
+})();
+</script>
+</main>
+<section class="contact" aria-labelledby="contact-h"><div class="wrap">
+<p class="label">Get in touch</p>
+<h2 id="contact-h">Let's talk media.</h2>
+<p>Email <a href="mailto:adamsian3@gmail.com">adamsian3@gmail.com</a> or find me on <a href="https://www.linkedin.com/in/ianmartinadams/" rel="noopener">LinkedIn</a>.</p>
+</div></section>
+<footer class="site-footer"><div class="wrap">
+<div>© 2026 Ian Adams · Media that earns its place. · Views are my own</div>
+<nav aria-label="Footer"><a href="/Pins/">Pins</a><a href="/gaming/">Gaming</a><a href="/Links/">Links</a><a href="https://www.linkedin.com/in/ianmartinadams/" rel="noopener">LinkedIn</a><a href="https://www.instagram.com/ianadams3/" rel="noopener">Instagram</a><a href="https://x.com/ianmartinadams" rel="noopener">X</a></nav>
+</div></footer>
+</body>
+</html>
