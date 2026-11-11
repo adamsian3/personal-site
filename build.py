@@ -746,9 +746,9 @@ COFFEE_JS = r"""
   const fjord = css.getPropertyValue('--fjord').trim() || '#3C6478';
   const sea = css.getPropertyValue('--sea-deep').trim() || '#436F67';
   const map = L.map('cafe-map', { scrollWheelZoom: false, worldCopyJump: true });
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/' + (dark ? 'dark_all' : 'light_all') + '/{z}/{x}/{y}{r}.png', {
-    maxZoom: 19, subdomains: 'abcd',
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
   const esc = s => String(s || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const layers = { been: L.layerGroup(), list: L.layerGroup() };
@@ -773,7 +773,8 @@ COFFEE_JS = r"""
   });
   layers.been.addTo(map); layers.list.addTo(map);
   const all = cafes.map(c => [c.lat, c.lng]);
-  map.fitBounds(all, { padding: [30, 30] });
+  const fit = () => { map.invalidateSize(); map.fitBounds(all, { padding: [30, 30], maxZoom: 12 }); };
+  fit(); window.addEventListener('load', fit);
   document.querySelectorAll('#cafe-filters .chip').forEach(b => b.addEventListener('click', () => {
     const f = b.dataset.f;
     document.querySelectorAll('#cafe-filters .chip').forEach(x => x.setAttribute('aria-pressed', String(x === b)));

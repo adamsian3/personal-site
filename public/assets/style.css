@@ -216,3 +216,6 @@ dialog#dlg::backdrop { background: rgba(18,28,35,.6); }
 .leaflet-popup-content .muted { color: #4E6370; }
 .leaflet-popup-content a { color: #3C6478; }
 @media (max-width: 760px) { .cafe-map { height: 420px; } }
+/* Calm the map down to fit the Fjord palette */
+.cafe-map .leaflet-tile-pane { filter: grayscale(1) contrast(0.85) brightness(1.08); }
+@media (prefers-color-scheme: dark) { .cafe-map .leaflet-tile-pane { filter: grayscale(1) invert(1) contrast(0.8) brightness(0.9); } }
