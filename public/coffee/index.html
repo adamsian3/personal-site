@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coffee · Ian Adams</title>
+<meta name="description" content="Ian Adams on coffee: home setup, festivals, and a map of cafés.">
+<link rel="canonical" href="https://ianadams.media/coffee/">
+<meta property="og:title" content="Coffee · Ian Adams">
+<meta property="og:description" content="Ian Adams on coffee: home setup, festivals, and a map of cafés.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ianadams.media/coffee/">
+<meta name="theme-color" content="#F7F9FA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121C23" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css?v=c697bbf1">
+</head>
+<body>
+<header class="site-header"><div class="wrap">
+<a class="mark" href="/" aria-label="Ian Adams, home">ian adams<span class="dot">.</span></a>
+<nav class="nav" aria-label="Main"><a href="/about/">About</a><a href="/Blog/TechMedia/">Tech &amp; Media</a><a href="/Blog/Travel/">Travel</a><a href="/Blog/Newsletters/">Newsletter</a></nav>
+</div></header>
+<main>
+<link rel="stylesheet" href="/assets/vendor/leaflet/leaflet.css">
+<div class="wrap">
+<header class="page-head read"><p class="label">About</p><h1>Coffee</h1>
+<p class="muted">Coffee is the constant on every trip. Here&#x27;s the kit at home, the festivals I keep going back to, and every café I&#x27;ve logged.</p></header>
+<div class="stats"><div class="stat"><b>62</b><span>cafés visited</span></div><div class="stat"><b>15</b><span>cities</span></div><div class="stat"><b>7</b><span>coffee festivals</span></div><div class="stat"><b>25</b><span>on my list</span></div></div>
+<article class="prose"><h2>My setup</h2>
+<ul>
+<li><strong>Grinder:</strong> Sage Smart Grinder Pro, 60 grind settings and doses straight into the portafilter</li>
+<li><strong>Machine:</strong> De'Longhi Dedica, an older model I've had since around 2009</li>
+<li><strong>Mug:</strong> Ember temperature-control mug, so the second half stays as hot as the first</li>
+</ul>
+<h2>Coffee festivals</h2>
+<p>Seven London Coffee Festivals and counting, all at the Truman Brewery on Brick Lane.</p>
+<table>
+<thead>
+<tr>
+<th>Year</th>
+<th>Festival</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026</td>
+<td>London Coffee Festival</td>
+<td>16 May</td>
+</tr>
+<tr>
+<td>2025</td>
+<td>London Coffee Festival</td>
+<td>17 May</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>London Coffee Festival</td>
+<td>13 April</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>London Coffee Festival</td>
+<td>23 April</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>London Coffee Festival</td>
+<td>2 April</td>
+</tr>
+<tr>
+<td>2019</td>
+<td>London Coffee Festival</td>
+<td>30 March</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>London Coffee Festival</td>
+<td>14 April</td>
+</tr>
+</tbody>
+</table>
+<h2>Café map</h2>
+<p>Tap a dot to see the café. Filled dots are places I've been, hollow dots are on my list.</p></article>
+<div class="filters" id="cafe-filters" role="group" aria-label="Filter cafés">
+<button class="chip" type="button" data-f="all" aria-pressed="true">All</button>
+<button class="chip" type="button" data-f="been" aria-pressed="false">Been</button>
+<button class="chip" type="button" data-f="list" aria-pressed="false">On my list</button>
+</div>
+<div id="cafe-map" class="cafe-map" role="region" aria-label="Map of cafés"></div>
+<div class="map-legend small muted"><span class="dot been"></span>Been <span class="dot list"></span>On my list</div>
+<section><p class="label">By city</p><ul class="list city-list"><li><button class="linkish" type="button" data-zoom="London">London</button><span class="date">23 cafés</span></li><li><button class="linkish" type="button" data-zoom="Dublin">Dublin</button><span class="date">13 cafés</span></li><li><button class="linkish" type="button" data-zoom="Edinburgh">Edinburgh</button><span class="date">10 cafés</span></li><li><button class="linkish" type="button" data-zoom="Hamburg">Hamburg</button><span class="date">7 cafés</span></li><li><button class="linkish" type="button" data-zoom="Reykjavik">Reykjavik</button><span class="date">7 cafés</span></li><li><button class="linkish" type="button" data-zoom="York">York</button><span class="date">7 cafés</span></li><li><button class="linkish" type="button" data-zoom="Oxford">Oxford</button><span class="date">6 cafés</span></li><li><button class="linkish" type="button" data-zoom="Brighton">Brighton</button><span class="date">4 cafés</span></li><li><button class="linkish" type="button" data-zoom="Rome">Rome</button><span class="date">3 cafés</span></li><li><button class="linkish" type="button" data-zoom="Gibraltar">Gibraltar</button><span class="date">2 cafés</span></li><li><button class="linkish" type="button" data-zoom="Amsterdam">Amsterdam</button><span class="date">1 café</span></li><li><button class="linkish" type="button" data-zoom="Bedford">Bedford</button><span class="date">1 café</span></li><li><button class="linkish" type="button" data-zoom="Funchal">Funchal</button><span class="date">1 café</span></li><li><button class="linkish" type="button" data-zoom="Ibiza">Ibiza</button><span class="date">1 café</span></li><li><button class="linkish" type="button" data-zoom="Kent">Kent</button><span class="date">1 café</span></li></ul></section>
+</div>
+<script type="application/json" id="cafes-data">[{"name": "Screaming Beans", "where": "Amsterdam", "country": "Netherlands", "lat": 52.36894, "lng": 4.88388, "status": "been", "visited": "Jun 2024, Apr 2016", "post": "/Amsterdam/"}, {"name": "Cafe Coho", "where": "Brighton", "country": "UK", "lat": 50.82242, "lng": -0.14149, "status": "been", "visited": "Jun 22, Sep 18, Jul 18, Jul 15, Jul 14", "post": "/UK/Brighton/"}, {"name": "Bond St Coffee", "where": "Brighton", "country": "UK", "lat": 50.82399, "lng": -0.14013, "status": "been", "visited": "Jun 22, Sep 18, Jul 18, Jul 15, Jul 14", "post": "/UK/Brighton/"}, {"name": "Trading Post Coffee Roasters", "where": "Brighton", "country": "UK", "lat": 50.82353, "lng": -0.14485, "status": "been", "visited": "Jun 22, Sep 18, Jul 18, Jul 15, Jul 14", "post": "/UK/Brighton/"}, {"name": "Pelicano Coffee Co", "where": "Brighton", "country": "UK", "lat": 50.8278, "lng": -0.13756, "status": "been", "visited": "Jun 22, Sep 18, Jul 18, Jul 15, Jul 14", "post": "/UK/Brighton/"}, {"name": "3FE", "where": "Dublin", "country": "Ireland", "lat": 53.31995, "lng": -6.27894, "status": "been", "visited": "Nov 2023, Jul 2016, May 2016, 2006", "post": "/Ireland/Dublin/"}, {"name": "The Fumbally", "where": "Dublin", "country": "Ireland", "lat": 53.33706, "lng": -6.27296, "status": "been", "visited": "Nov 2023, Jul 2016, May 2016, 2006", "post": "/Ireland/Dublin/"}, {"name": "Love Supreme Coffee", "where": "Dublin", "country": "Ireland", "lat": 53.353, "lng": -6.286, "status": "been", "visited": "Nov 2023, Jul 2016, May 2016, 2006", "post": "/Ireland/Dublin/", "approx": true}, {"name": "Shoe Lane Coffee", "where": "Dublin", "country": "Ireland", "lat": 53.34716, "lng": -6.25525, "status": "been", "visited": "Nov 2023, Jul 2016, May 2016, 2006", "post": "/Ireland/Dublin/"}, {"name": "The Morning", "where": "Dublin", "country": "Ireland", "lat": 53.344, "lng": -6.261, "status": "been", "visited": "Nov 2023, Jul 2016, May 2016, 2006", "post": "/Ireland/Dublin/", "approx": true}, {"name": "Two Pups", "where": "Dublin", "country": "Ireland", "lat": 53.33939, "lng": -6.27349, "status": "been", "visited": "Nov 2023, Jul 2016, May 2016, 2006", "post": "/Ireland/Dublin/"}, {"name": "Vice Coffee Inc", "where": "Dublin", "country": "Ireland", "lat": 53.34796, "lng": -6.26214, "status": "been", "visited": "Nov 2023, Jul 2016, May 2016, 2006", "post": "/Ireland/Dublin/"}, {"name": "Brother Hubbard", "where": "Dublin", "country": "Ireland", "lat": 53.34713, "lng": -6.26844, "status": "been", "visited": "Nov 2023, Jul 2016, May 2016, 2006", "post": "/Ireland/Dublin/"}, {"name": "Clement & Pekoe", "where": "Dublin", "country": "Ireland", "lat": 53.34155, "lng": -6.26281, "status": "been", "visited": "Nov 2023, Jul 2016, May 2016, 2006", "post": "/Ireland/Dublin/"}, {"name": "Joe's Coffee", "where": "Dublin", "country": "Ireland", "lat": 53.34, "lng": -6.26, "status": "been", "visited": "Nov 2023, Jul 2016, May 2016, 2006", "post": "/Ireland/Dublin/", "approx": true}, {"name": "Kaph", "where": "Dublin", "country": "Ireland", "lat": 53.34259, "lng": -6.2633, "status": "been", "visited": "Nov 2023, Jul 2016, May 2016, 2006", "post": "/Ireland/Dublin/"}, {"name": "Proper Order Coffee Co", "where": "Dublin", "country": "Ireland", "lat": 53.34753, "lng": -6.27949, "status": "been", "visited": "Nov 2023, Jul 2016, May 2016, 2006", "post": "/Ireland/Dublin/"}, {"name": "Cocobrew", "where": "Dublin", "country": "Ireland", "lat": 53.338, "lng": -6.256, "status": "been", "visited": "Nov 2023, Jul 2016, May 2016, 2006", "post": "/Ireland/Dublin/", "approx": true}, {"name": "Zebra Coffee Company", "where": "Edinburgh", "country": "UK", "lat": 55.94981, "lng": -3.19304, "status": "been", "visited": "Sep 2021", "post": "/Scotland/Edinburgh/"}, {"name": "Lowdown", "where": "Edinburgh", "country": "UK", "lat": 55.9532, "lng": -3.1979, "status": "been", "visited": "Sep 2021", "post": "/Scotland/Edinburgh/"}, {"name": "Fortitude Coffee", "where": "Edinburgh", "country": "UK", "lat": 55.95617, "lng": -3.17185, "status": "been", "visited": "Sep 2021", "post": "/Scotland/Edinburgh/"}, {"name": "The Milkman", "where": "Edinburgh", "country": "UK", "lat": 55.95038, "lng": -3.18853, "status": "been", "visited": "Sep 2021", "post": "/Scotland/Edinburgh/"}, {"name": "Cairngorm Coffee", "where": "Edinburgh", "country": "UK", "lat": 55.93968, "lng": -3.20431, "status": "been", "visited": "Sep 2021", "post": "/Scotland/Edinburgh/"}, {"name": "Gordon St Coffee", "where": "Edinburgh", "country": "UK", "lat": 55.95096, "lng": -3.18994, "status": "been", "visited": "Sep 2021", "post": "/Scotland/Edinburgh/"}, {"name": "Cult Espresso", "where": "Edinburgh", "country": "UK", "lat": 55.9414, "lng": -3.184, "status": "been", "visited": "Sep 2021", "post": "/Scotland/Edinburgh/", "approx": true}, {"name": "Wellington Coffee", "where": "Edinburgh", "country": "UK", "lat": 55.95366, "lng": -3.19762, "status": "been", "visited": "Sep 2021", "post": "/Scotland/Edinburgh/"}, {"name": "Kilimanjaro Coffee", "where": "Edinburgh", "country": "UK", "lat": 55.9442, "lng": -3.1825, "status": "been", "visited": "Sep 2021", "post": "/Scotland/Edinburgh/", "approx": true}, {"name": "Union Brew Lab", "where": "Edinburgh", "country": "UK", "lat": 55.9472, "lng": -3.1872, "status": "been", "visited": "Sep 2021", "post": "/Scotland/Edinburgh/", "approx": true}, {"name": "Gibraltar Tea Company", "where": "Gibraltar", "country": "Gibraltar", "lat": 36.1405, "lng": -5.353, "status": "been", "visited": "Sep 2021", "post": "/Gibraltar/", "approx": true}, {"name": "Chök", "where": "Gibraltar", "country": "Gibraltar", "lat": 36.13844, "lng": -5.35353, "status": "been", "visited": "Sep 2021", "post": "/Gibraltar/"}, {"name": "Nord Coast Coffee Roastery", "where": "Hamburg", "country": "Germany", "lat": 53.54656, "lng": 9.98806, "status": "been", "visited": "2022, 2019, 2018, 2015, 2013, 2011", "post": "/Germany/Hamburg/"}, {"name": "Espresso House", "where": "Hamburg", "country": "Germany", "lat": 53.55487, "lng": 9.98878, "status": "been", "visited": "2022, 2019, 2018, 2015, 2013, 2011", "post": "/Germany/Hamburg/"}, {"name": "Balzac Coffee", "where": "Hamburg", "country": "Germany", "lat": 53.553, "lng": 9.993, "status": "been", "visited": "2022, 2019, 2018, 2015, 2013, 2011", "post": "/Germany/Hamburg/", "approx": true}, {"name": "Codos", "where": "Hamburg", "country": "Germany", "lat": 53.55342, "lng": 9.92895, "status": "been", "visited": "2022, 2019, 2018, 2015, 2013, 2011", "post": "/Germany/Hamburg/"}, {"name": "Manufact Coffee Roasters", "where": "Hamburg", "country": "Germany", "lat": 53.55978, "lng": 9.96713, "status": "been", "visited": "2022, 2019, 2018, 2015, 2013, 2011", "post": "/Germany/Hamburg/"}, {"name": "Speicherstadt Kaffeerösterei", "where": "Hamburg", "country": "Germany", "lat": 53.54382, "lng": 9.98804, "status": "been", "visited": "2022, 2019, 2018, 2015, 2013, 2011", "post": "/Germany/Hamburg/"}, {"name": "Double Coffee", "where": "Hamburg", "country": "Germany", "lat": 53.556, "lng": 9.989, "status": "been", "visited": "2022, 2019, 2018, 2015, 2013, 2011", "post": "/Germany/Hamburg/", "approx": true}, {"name": "Melbourne Street Coffee", "where": "Ibiza", "country": "Spain", "lat": 38.9105, "lng": 1.435, "status": "been", "visited": "Apr 2022", "post": "/Spain/Ibiza/", "approx": true}, {"name": "Brauð & Co", "where": "Reykjavik", "country": "Iceland", "lat": 64.14015, "lng": -21.89529, "status": "been", "visited": "Dec 2021", "post": "/Iceland/"}, {"name": "Kaffitár", "where": "Reykjavik", "country": "Iceland", "lat": 64.1475, "lng": -21.9356, "status": "been", "visited": "Dec 2021", "post": "/Iceland/", "approx": true}, {"name": "Reykjavik Roasters", "where": "Reykjavik", "country": "Iceland", "lat": 64.14356, "lng": -21.92662, "status": "been", "visited": "Dec 2021", "post": "/Iceland/"}, {"name": "Mokka Kaffi", "where": "Reykjavik", "country": "Iceland", "lat": 64.14602, "lng": -21.93235, "status": "been", "visited": "Dec 2021", "post": "/Iceland/"}, {"name": "Kaktus Espressobar", "where": "Reykjavik", "country": "Iceland", "lat": 64.144, "lng": -21.939, "status": "been", "visited": "Dec 2021", "post": "/Iceland/", "approx": true}, {"name": "Kattakaffihúsið", "where": "Reykjavik", "country": "Iceland", "lat": 64.145, "lng": -21.934, "status": "been", "visited": "Dec 2021", "post": "/Iceland/", "approx": true}, {"name": "Café Rosenberg", "where": "Reykjavik", "country": "Iceland", "lat": 64.1458, "lng": -21.929, "status": "been", "visited": "Dec 2021", "post": "/Iceland/", "approx": true}, {"name": "Greenhouse Coffee Roaster", "where": "Funchal", "country": "Portugal", "lat": 32.648, "lng": -16.909, "status": "been", "visited": "Aug 2019", "post": "/Portugal/Madeira/", "approx": true}, {"name": "Jericho Coffee Traders", "where": "Oxford", "country": "UK", "lat": 51.7475, "lng": -1.27244, "status": "been", "visited": "Dec 22, Jul 19", "post": "/UK/Oxford/"}, {"name": "Barefoot", "where": "Oxford", "country": "UK", "lat": 51.76458, "lng": -1.26216, "status": "been", "visited": "Dec 22, Jul 19", "post": "/UK/Oxford/"}, {"name": "Society Café", "where": "Oxford", "country": "UK", "lat": 51.75353, "lng": -1.25929, "status": "been", "visited": "Dec 22, Jul 19", "post": "/UK/Oxford/"}, {"name": "The Missing Bean", "where": "Oxford", "country": "UK", "lat": 51.75308, "lng": -1.25619, "status": "been", "visited": "Dec 22, Jul 19", "post": "/UK/Oxford/"}, {"name": "Brew", "where": "Oxford", "country": "UK", "lat": 51.76476, "lng": -1.26106, "status": "been", "visited": "Dec 22, Jul 19", "post": "/UK/Oxford/"}, {"name": "Colombia Coffee Roasters", "where": "Oxford", "country": "UK", "lat": 51.75247, "lng": -1.25647, "status": "been", "visited": "Dec 22, Jul 19", "post": "/UK/Oxford/"}, {"name": "La Casa del Caffè Tazza d'Oro", "where": "Rome", "country": "Italy", "lat": 41.89943, "lng": 12.47431, "status": "been", "visited": "May 2023, Oct 2015", "post": "/Italy/Rome/"}, {"name": "Sant' Eustachio Il Caffè", "where": "Rome", "country": "Italy", "lat": 41.89761, "lng": 12.47524, "status": "been", "visited": "May 2023, Oct 2015", "post": "/Italy/Rome/"}, {"name": "Roscioli Caffè Pasticceria", "where": "Rome", "country": "Italy", "lat": 41.89415, "lng": 12.47443, "status": "been", "visited": "May 2023, Oct 2015", "post": "/Italy/Rome/"}, {"name": "Brew & Brownie", "where": "York", "country": "UK", "lat": 53.96105, "lng": -1.08563, "status": "been", "visited": "Apr 2019", "post": "/UK/York/"}, {"name": "Gatehouse Coffee", "where": "York", "country": "UK", "lat": 53.95524, "lng": -1.07084, "status": "been", "visited": "Apr 2019", "post": "/UK/York/"}, {"name": "Daughter Café", "where": "York", "country": "UK", "lat": 53.955, "lng": -1.076, "status": "been", "visited": "Apr 2019", "post": "/UK/York/", "approx": true}, {"name": "Drift-In", "where": "York", "country": "UK", "lat": 53.958, "lng": -1.078, "status": "been", "visited": "Apr 2019", "post": "/UK/York/", "approx": true}, {"name": "The Perky Peacock", "where": "York", "country": "UK", "lat": 53.9608, "lng": -1.088, "status": "been", "visited": "Apr 2019", "post": "/UK/York/", "approx": true}, {"name": "Bison Coffee House", "where": "York", "country": "UK", "lat": 53.95232, "lng": -1.07157, "status": "been", "visited": "Apr 2019", "post": "/UK/York/"}, {"name": "Partisan", "where": "York", "country": "UK", "lat": 53.95667, "lng": -1.09517, "status": "been", "visited": "Apr 2019", "post": "/UK/York/"}, {"name": "Ralph's Coffee", "where": "Mayfair, London", "country": "UK", "lat": 51.50976, "lng": -0.14149, "status": "list"}, {"name": "Pophams", "where": "Islington, London", "country": "UK", "lat": 51.53685, "lng": -0.09634, "status": "list"}, {"name": "Nibbles", "where": "Kent", "country": "UK", "lat": 51.01558, "lng": 0.61408, "status": "list"}, {"name": "Milk Run", "where": "Balham, London", "country": "UK", "lat": 51.43817, "lng": -0.15544, "status": "list"}, {"name": "EVE", "where": "Earl's Court, London", "country": "UK", "lat": 51.49496, "lng": -0.19442, "status": "list"}, {"name": "Fortitude Bakehouse", "where": "Bloomsbury, London", "country": "UK", "lat": 51.52282, "lng": -0.1242, "status": "list"}, {"name": "Bar Italia", "where": "Soho, London", "country": "UK", "lat": 51.51342, "lng": -0.13124, "status": "list"}, {"name": "Jolene Redchurch Street", "where": "Shoreditch, London", "country": "UK", "lat": 51.52456, "lng": -0.07431, "status": "list"}, {"name": "Bridges Espresso Bar", "where": "Bedford", "country": "UK", "lat": 52.13517, "lng": -0.46847, "status": "list"}, {"name": "Arôme Bakery", "where": "Seven Dials, London", "country": "UK", "lat": 51.51303, "lng": -0.12606, "status": "list"}, {"name": "TOAD Bakery", "where": "Peckham, London", "country": "UK", "lat": 51.47351, "lng": -0.08109, "status": "list"}, {"name": "Chatsworth Bakehouse", "where": "Crystal Palace, London", "country": "UK", "lat": 51.41561, "lng": -0.07204, "status": "list"}, {"name": "The Hoxton, Holborn", "where": "Holborn, London", "country": "UK", "lat": 51.51723, "lng": -0.122, "status": "list"}, {"name": "Zeit für Brot", "where": "Islington, London", "country": "UK", "lat": 51.53205, "lng": -0.10652, "status": "list"}, {"name": "Layla Bakery", "where": "Ladbroke Grove, London", "country": "UK", "lat": 51.52172, "lng": -0.21051, "status": "list"}, {"name": "60 Degrees Coffee", "where": "London", "country": "UK", "lat": 51.51, "lng": -0.13, "status": "list", "approx": true}, {"name": "The Dusty Knuckle Bakery", "where": "Dalston, London", "country": "UK", "lat": 51.54709, "lng": -0.07409, "status": "list"}, {"name": "Mahali Bakery by Mahali and Co", "where": "Battersea, London", "country": "UK", "lat": 51.47638, "lng": -0.14871, "status": "list"}, {"name": "Julie's Restaurant", "where": "Holland Park, London", "country": "UK", "lat": 51.51013, "lng": -0.21055, "status": "list"}, {"name": "Castiglione", "where": "Trafalgar Square, London", "country": "UK", "lat": 51.50888, "lng": -0.13039, "status": "list"}, {"name": "GSQ", "where": "Mayfair, London", "country": "UK", "lat": 51.51144, "lng": -0.15305, "status": "list"}, {"name": "E5 Bakehouse", "where": "Hackney, London", "country": "UK", "lat": 51.54119, "lng": -0.05772, "status": "list"}, {"name": "Corner Shop", "where": "Temple, London", "country": "UK", "lat": 51.51137, "lng": -0.11396, "status": "list"}, {"name": "WatchHouse", "where": "Covent Garden, London", "country": "UK", "lat": 51.51108, "lng": -0.12238, "status": "list"}, {"name": "Chestnut Bakery", "where": "Covent Garden, London", "country": "UK", "lat": 51.512, "lng": -0.123, "status": "list", "approx": true}]</script>
+<script src="/assets/vendor/leaflet/leaflet.js"></script>
+<script>
+(() => {
+  const cafes = JSON.parse(document.getElementById('cafes-data').textContent);
+  const dark = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches;
+  const css = getComputedStyle(document.documentElement);
+  const fjord = css.getPropertyValue('--fjord').trim() || '#3C6478';
+  const sea = css.getPropertyValue('--sea-deep').trim() || '#436F67';
+  const map = L.map('cafe-map', { scrollWheelZoom: false, worldCopyJump: true });
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/' + (dark ? 'dark_all' : 'light_all') + '/{z}/{x}/{y}{r}.png', {
+    maxZoom: 19, subdomains: 'abcd',
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+  }).addTo(map);
+  const esc = s => String(s || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const layers = { been: L.layerGroup(), list: L.layerGroup() };
+  cafes.forEach(c => {
+    const been = c.status === 'been';
+    const m = L.circleMarker([c.lat, c.lng], {
+      radius: 7, weight: 2, color: been ? fjord : sea,
+      fillColor: been ? fjord : (dark ? '#121C23' : '#FFFFFF'), fillOpacity: been ? 0.9 : 1
+    });
+    const rows = [
+      '<p class="label" style="margin:0 0 4px">' + (been ? 'Been' : 'On my list') + '</p>',
+      '<strong>' + esc(c.name) + '</strong>',
+      '<div>' + esc(c.where) + (c.country && c.country !== c.where ? ', ' + esc(c.country) : '') + '</div>',
+      c.visited ? '<div class="muted">Visited ' + esc(c.visited) + '</div>' : '',
+      c.approx ? '<div class="muted"><em>Approximate location</em></div>' : '',
+      '<div style="margin-top:6px"><a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(c.name + ' ' + c.where) + '" target="_blank" rel="noopener">Open in Maps</a>' +
+        (c.post ? ' · <a href="' + esc(c.post) + '">Trip notes</a>' : '') + '</div>'
+    ];
+    m.bindPopup(rows.join(''), { maxWidth: 260 });
+    m.bindTooltip(c.name, { direction: 'top', offset: [0, -6] });
+    layers[c.status === 'been' ? 'been' : 'list'].addLayer(m);
+  });
+  layers.been.addTo(map); layers.list.addTo(map);
+  const all = cafes.map(c => [c.lat, c.lng]);
+  map.fitBounds(all, { padding: [30, 30] });
+  document.querySelectorAll('#cafe-filters .chip').forEach(b => b.addEventListener('click', () => {
+    const f = b.dataset.f;
+    document.querySelectorAll('#cafe-filters .chip').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    ['been', 'list'].forEach(k => (f === 'all' || f === k) ? layers[k].addTo(map) : map.removeLayer(layers[k]));
+  }));
+  document.querySelectorAll('[data-zoom]').forEach(b => b.addEventListener('click', () => {
+    const z = b.dataset.zoom; const pts = cafes.filter(c => (c.where.split(',').pop().trim()) === z).map(c => [c.lat, c.lng]);
+    if (pts.length) { map.fitBounds(pts, { padding: [40, 40], maxZoom: 15 }); document.getElementById('cafe-map').scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+  }));
+})();
+</script>
+</main>
+<section class="contact" aria-labelledby="contact-h"><div class="wrap">
+<p class="label">Get in touch</p>
+<h2 id="contact-h">Let's talk media.</h2>
+<p>Email <a href="mailto:adamsian3@gmail.com">adamsian3@gmail.com</a> or find me on <a href="https://www.linkedin.com/in/ianmartinadams/" rel="noopener">LinkedIn</a>.</p>
+</div></section>
+<footer class="site-footer"><div class="wrap">
+<div>© 2026 Ian Adams · Media that earns its place. · Views are my own</div>
+<nav aria-label="Footer"><a href="/coffee/">Coffee</a><a href="/Pins/">Pins</a><a href="/gaming/">Gaming</a><a href="/Links/">Links</a><a href="https://www.linkedin.com/in/ianmartinadams/" rel="noopener">LinkedIn</a><a href="https://www.instagram.com/ianadams3/" rel="noopener">Instagram</a><a href="https://x.com/ianmartinadams" rel="noopener">X</a></nav>
+</div></footer>
+</body>
+</html>

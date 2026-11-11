@@ -1,0 +1,843 @@
+[
+ {
+  "name": "Screaming Beans",
+  "where": "Amsterdam",
+  "country": "Netherlands",
+  "lat": 52.36894,
+  "lng": 4.88388,
+  "status": "been",
+  "visited": "Jun 2024, Apr 2016",
+  "post": "/Amsterdam/"
+ },
+ {
+  "name": "Cafe Coho",
+  "where": "Brighton",
+  "country": "UK",
+  "lat": 50.82242,
+  "lng": -0.14149,
+  "status": "been",
+  "visited": "Jun 22, Sep 18, Jul 18, Jul 15, Jul 14",
+  "post": "/UK/Brighton/"
+ },
+ {
+  "name": "Bond St Coffee",
+  "where": "Brighton",
+  "country": "UK",
+  "lat": 50.82399,
+  "lng": -0.14013,
+  "status": "been",
+  "visited": "Jun 22, Sep 18, Jul 18, Jul 15, Jul 14",
+  "post": "/UK/Brighton/"
+ },
+ {
+  "name": "Trading Post Coffee Roasters",
+  "where": "Brighton",
+  "country": "UK",
+  "lat": 50.82353,
+  "lng": -0.14485,
+  "status": "been",
+  "visited": "Jun 22, Sep 18, Jul 18, Jul 15, Jul 14",
+  "post": "/UK/Brighton/"
+ },
+ {
+  "name": "Pelicano Coffee Co",
+  "where": "Brighton",
+  "country": "UK",
+  "lat": 50.8278,
+  "lng": -0.13756,
+  "status": "been",
+  "visited": "Jun 22, Sep 18, Jul 18, Jul 15, Jul 14",
+  "post": "/UK/Brighton/"
+ },
+ {
+  "name": "3FE",
+  "where": "Dublin",
+  "country": "Ireland",
+  "lat": 53.31995,
+  "lng": -6.27894,
+  "status": "been",
+  "visited": "Nov 2023, Jul 2016, May 2016, 2006",
+  "post": "/Ireland/Dublin/"
+ },
+ {
+  "name": "The Fumbally",
+  "where": "Dublin",
+  "country": "Ireland",
+  "lat": 53.33706,
+  "lng": -6.27296,
+  "status": "been",
+  "visited": "Nov 2023, Jul 2016, May 2016, 2006",
+  "post": "/Ireland/Dublin/"
+ },
+ {
+  "name": "Love Supreme Coffee",
+  "where": "Dublin",
+  "country": "Ireland",
+  "lat": 53.353,
+  "lng": -6.286,
+  "status": "been",
+  "visited": "Nov 2023, Jul 2016, May 2016, 2006",
+  "post": "/Ireland/Dublin/",
+  "approx": true
+ },
+ {
+  "name": "Shoe Lane Coffee",
+  "where": "Dublin",
+  "country": "Ireland",
+  "lat": 53.34716,
+  "lng": -6.25525,
+  "status": "been",
+  "visited": "Nov 2023, Jul 2016, May 2016, 2006",
+  "post": "/Ireland/Dublin/"
+ },
+ {
+  "name": "The Morning",
+  "where": "Dublin",
+  "country": "Ireland",
+  "lat": 53.344,
+  "lng": -6.261,
+  "status": "been",
+  "visited": "Nov 2023, Jul 2016, May 2016, 2006",
+  "post": "/Ireland/Dublin/",
+  "approx": true
+ },
+ {
+  "name": "Two Pups",
+  "where": "Dublin",
+  "country": "Ireland",
+  "lat": 53.33939,
+  "lng": -6.27349,
+  "status": "been",
+  "visited": "Nov 2023, Jul 2016, May 2016, 2006",
+  "post": "/Ireland/Dublin/"
+ },
+ {
+  "name": "Vice Coffee Inc",
+  "where": "Dublin",
+  "country": "Ireland",
+  "lat": 53.34796,
+  "lng": -6.26214,
+  "status": "been",
+  "visited": "Nov 2023, Jul 2016, May 2016, 2006",
+  "post": "/Ireland/Dublin/"
+ },
+ {
+  "name": "Brother Hubbard",
+  "where": "Dublin",
+  "country": "Ireland",
+  "lat": 53.34713,
+  "lng": -6.26844,
+  "status": "been",
+  "visited": "Nov 2023, Jul 2016, May 2016, 2006",
+  "post": "/Ireland/Dublin/"
+ },
+ {
+  "name": "Clement & Pekoe",
+  "where": "Dublin",
+  "country": "Ireland",
+  "lat": 53.34155,
+  "lng": -6.26281,
+  "status": "been",
+  "visited": "Nov 2023, Jul 2016, May 2016, 2006",
+  "post": "/Ireland/Dublin/"
+ },
+ {
+  "name": "Joe's Coffee",
+  "where": "Dublin",
+  "country": "Ireland",
+  "lat": 53.34,
+  "lng": -6.26,
+  "status": "been",
+  "visited": "Nov 2023, Jul 2016, May 2016, 2006",
+  "post": "/Ireland/Dublin/",
+  "approx": true
+ },
+ {
+  "name": "Kaph",
+  "where": "Dublin",
+  "country": "Ireland",
+  "lat": 53.34259,
+  "lng": -6.2633,
+  "status": "been",
+  "visited": "Nov 2023, Jul 2016, May 2016, 2006",
+  "post": "/Ireland/Dublin/"
+ },
+ {
+  "name": "Proper Order Coffee Co",
+  "where": "Dublin",
+  "country": "Ireland",
+  "lat": 53.34753,
+  "lng": -6.27949,
+  "status": "been",
+  "visited": "Nov 2023, Jul 2016, May 2016, 2006",
+  "post": "/Ireland/Dublin/"
+ },
+ {
+  "name": "Cocobrew",
+  "where": "Dublin",
+  "country": "Ireland",
+  "lat": 53.338,
+  "lng": -6.256,
+  "status": "been",
+  "visited": "Nov 2023, Jul 2016, May 2016, 2006",
+  "post": "/Ireland/Dublin/",
+  "approx": true
+ },
+ {
+  "name": "Zebra Coffee Company",
+  "where": "Edinburgh",
+  "country": "UK",
+  "lat": 55.94981,
+  "lng": -3.19304,
+  "status": "been",
+  "visited": "Sep 2021",
+  "post": "/Scotland/Edinburgh/"
+ },
+ {
+  "name": "Lowdown",
+  "where": "Edinburgh",
+  "country": "UK",
+  "lat": 55.9532,
+  "lng": -3.1979,
+  "status": "been",
+  "visited": "Sep 2021",
+  "post": "/Scotland/Edinburgh/"
+ },
+ {
+  "name": "Fortitude Coffee",
+  "where": "Edinburgh",
+  "country": "UK",
+  "lat": 55.95617,
+  "lng": -3.17185,
+  "status": "been",
+  "visited": "Sep 2021",
+  "post": "/Scotland/Edinburgh/"
+ },
+ {
+  "name": "The Milkman",
+  "where": "Edinburgh",
+  "country": "UK",
+  "lat": 55.95038,
+  "lng": -3.18853,
+  "status": "been",
+  "visited": "Sep 2021",
+  "post": "/Scotland/Edinburgh/"
+ },
+ {
+  "name": "Cairngorm Coffee",
+  "where": "Edinburgh",
+  "country": "UK",
+  "lat": 55.93968,
+  "lng": -3.20431,
+  "status": "been",
+  "visited": "Sep 2021",
+  "post": "/Scotland/Edinburgh/"
+ },
+ {
+  "name": "Gordon St Coffee",
+  "where": "Edinburgh",
+  "country": "UK",
+  "lat": 55.95096,
+  "lng": -3.18994,
+  "status": "been",
+  "visited": "Sep 2021",
+  "post": "/Scotland/Edinburgh/"
+ },
+ {
+  "name": "Cult Espresso",
+  "where": "Edinburgh",
+  "country": "UK",
+  "lat": 55.9414,
+  "lng": -3.184,
+  "status": "been",
+  "visited": "Sep 2021",
+  "post": "/Scotland/Edinburgh/",
+  "approx": true
+ },
+ {
+  "name": "Wellington Coffee",
+  "where": "Edinburgh",
+  "country": "UK",
+  "lat": 55.95366,
+  "lng": -3.19762,
+  "status": "been",
+  "visited": "Sep 2021",
+  "post": "/Scotland/Edinburgh/"
+ },
+ {
+  "name": "Kilimanjaro Coffee",
+  "where": "Edinburgh",
+  "country": "UK",
+  "lat": 55.9442,
+  "lng": -3.1825,
+  "status": "been",
+  "visited": "Sep 2021",
+  "post": "/Scotland/Edinburgh/",
+  "approx": true
+ },
+ {
+  "name": "Union Brew Lab",
+  "where": "Edinburgh",
+  "country": "UK",
+  "lat": 55.9472,
+  "lng": -3.1872,
+  "status": "been",
+  "visited": "Sep 2021",
+  "post": "/Scotland/Edinburgh/",
+  "approx": true
+ },
+ {
+  "name": "Gibraltar Tea Company",
+  "where": "Gibraltar",
+  "country": "Gibraltar",
+  "lat": 36.1405,
+  "lng": -5.353,
+  "status": "been",
+  "visited": "Sep 2021",
+  "post": "/Gibraltar/",
+  "approx": true
+ },
+ {
+  "name": "Chök",
+  "where": "Gibraltar",
+  "country": "Gibraltar",
+  "lat": 36.13844,
+  "lng": -5.35353,
+  "status": "been",
+  "visited": "Sep 2021",
+  "post": "/Gibraltar/"
+ },
+ {
+  "name": "Nord Coast Coffee Roastery",
+  "where": "Hamburg",
+  "country": "Germany",
+  "lat": 53.54656,
+  "lng": 9.98806,
+  "status": "been",
+  "visited": "2022, 2019, 2018, 2015, 2013, 2011",
+  "post": "/Germany/Hamburg/"
+ },
+ {
+  "name": "Espresso House",
+  "where": "Hamburg",
+  "country": "Germany",
+  "lat": 53.55487,
+  "lng": 9.98878,
+  "status": "been",
+  "visited": "2022, 2019, 2018, 2015, 2013, 2011",
+  "post": "/Germany/Hamburg/"
+ },
+ {
+  "name": "Balzac Coffee",
+  "where": "Hamburg",
+  "country": "Germany",
+  "lat": 53.553,
+  "lng": 9.993,
+  "status": "been",
+  "visited": "2022, 2019, 2018, 2015, 2013, 2011",
+  "post": "/Germany/Hamburg/",
+  "approx": true
+ },
+ {
+  "name": "Codos",
+  "where": "Hamburg",
+  "country": "Germany",
+  "lat": 53.55342,
+  "lng": 9.92895,
+  "status": "been",
+  "visited": "2022, 2019, 2018, 2015, 2013, 2011",
+  "post": "/Germany/Hamburg/"
+ },
+ {
+  "name": "Manufact Coffee Roasters",
+  "where": "Hamburg",
+  "country": "Germany",
+  "lat": 53.55978,
+  "lng": 9.96713,
+  "status": "been",
+  "visited": "2022, 2019, 2018, 2015, 2013, 2011",
+  "post": "/Germany/Hamburg/"
+ },
+ {
+  "name": "Speicherstadt Kaffeerösterei",
+  "where": "Hamburg",
+  "country": "Germany",
+  "lat": 53.54382,
+  "lng": 9.98804,
+  "status": "been",
+  "visited": "2022, 2019, 2018, 2015, 2013, 2011",
+  "post": "/Germany/Hamburg/"
+ },
+ {
+  "name": "Double Coffee",
+  "where": "Hamburg",
+  "country": "Germany",
+  "lat": 53.556,
+  "lng": 9.989,
+  "status": "been",
+  "visited": "2022, 2019, 2018, 2015, 2013, 2011",
+  "post": "/Germany/Hamburg/",
+  "approx": true
+ },
+ {
+  "name": "Melbourne Street Coffee",
+  "where": "Ibiza",
+  "country": "Spain",
+  "lat": 38.9105,
+  "lng": 1.435,
+  "status": "been",
+  "visited": "Apr 2022",
+  "post": "/Spain/Ibiza/",
+  "approx": true
+ },
+ {
+  "name": "Brauð & Co",
+  "where": "Reykjavik",
+  "country": "Iceland",
+  "lat": 64.14015,
+  "lng": -21.89529,
+  "status": "been",
+  "visited": "Dec 2021",
+  "post": "/Iceland/"
+ },
+ {
+  "name": "Kaffitár",
+  "where": "Reykjavik",
+  "country": "Iceland",
+  "lat": 64.1475,
+  "lng": -21.9356,
+  "status": "been",
+  "visited": "Dec 2021",
+  "post": "/Iceland/",
+  "approx": true
+ },
+ {
+  "name": "Reykjavik Roasters",
+  "where": "Reykjavik",
+  "country": "Iceland",
+  "lat": 64.14356,
+  "lng": -21.92662,
+  "status": "been",
+  "visited": "Dec 2021",
+  "post": "/Iceland/"
+ },
+ {
+  "name": "Mokka Kaffi",
+  "where": "Reykjavik",
+  "country": "Iceland",
+  "lat": 64.14602,
+  "lng": -21.93235,
+  "status": "been",
+  "visited": "Dec 2021",
+  "post": "/Iceland/"
+ },
+ {
+  "name": "Kaktus Espressobar",
+  "where": "Reykjavik",
+  "country": "Iceland",
+  "lat": 64.144,
+  "lng": -21.939,
+  "status": "been",
+  "visited": "Dec 2021",
+  "post": "/Iceland/",
+  "approx": true
+ },
+ {
+  "name": "Kattakaffihúsið",
+  "where": "Reykjavik",
+  "country": "Iceland",
+  "lat": 64.145,
+  "lng": -21.934,
+  "status": "been",
+  "visited": "Dec 2021",
+  "post": "/Iceland/",
+  "approx": true
+ },
+ {
+  "name": "Café Rosenberg",
+  "where": "Reykjavik",
+  "country": "Iceland",
+  "lat": 64.1458,
+  "lng": -21.929,
+  "status": "been",
+  "visited": "Dec 2021",
+  "post": "/Iceland/",
+  "approx": true
+ },
+ {
+  "name": "Greenhouse Coffee Roaster",
+  "where": "Funchal",
+  "country": "Portugal",
+  "lat": 32.648,
+  "lng": -16.909,
+  "status": "been",
+  "visited": "Aug 2019",
+  "post": "/Portugal/Madeira/",
+  "approx": true
+ },
+ {
+  "name": "Jericho Coffee Traders",
+  "where": "Oxford",
+  "country": "UK",
+  "lat": 51.7475,
+  "lng": -1.27244,
+  "status": "been",
+  "visited": "Dec 22, Jul 19",
+  "post": "/UK/Oxford/"
+ },
+ {
+  "name": "Barefoot",
+  "where": "Oxford",
+  "country": "UK",
+  "lat": 51.76458,
+  "lng": -1.26216,
+  "status": "been",
+  "visited": "Dec 22, Jul 19",
+  "post": "/UK/Oxford/"
+ },
+ {
+  "name": "Society Café",
+  "where": "Oxford",
+  "country": "UK",
+  "lat": 51.75353,
+  "lng": -1.25929,
+  "status": "been",
+  "visited": "Dec 22, Jul 19",
+  "post": "/UK/Oxford/"
+ },
+ {
+  "name": "The Missing Bean",
+  "where": "Oxford",
+  "country": "UK",
+  "lat": 51.75308,
+  "lng": -1.25619,
+  "status": "been",
+  "visited": "Dec 22, Jul 19",
+  "post": "/UK/Oxford/"
+ },
+ {
+  "name": "Brew",
+  "where": "Oxford",
+  "country": "UK",
+  "lat": 51.76476,
+  "lng": -1.26106,
+  "status": "been",
+  "visited": "Dec 22, Jul 19",
+  "post": "/UK/Oxford/"
+ },
+ {
+  "name": "Colombia Coffee Roasters",
+  "where": "Oxford",
+  "country": "UK",
+  "lat": 51.75247,
+  "lng": -1.25647,
+  "status": "been",
+  "visited": "Dec 22, Jul 19",
+  "post": "/UK/Oxford/"
+ },
+ {
+  "name": "La Casa del Caffè Tazza d'Oro",
+  "where": "Rome",
+  "country": "Italy",
+  "lat": 41.89943,
+  "lng": 12.47431,
+  "status": "been",
+  "visited": "May 2023, Oct 2015",
+  "post": "/Italy/Rome/"
+ },
+ {
+  "name": "Sant' Eustachio Il Caffè",
+  "where": "Rome",
+  "country": "Italy",
+  "lat": 41.89761,
+  "lng": 12.47524,
+  "status": "been",
+  "visited": "May 2023, Oct 2015",
+  "post": "/Italy/Rome/"
+ },
+ {
+  "name": "Roscioli Caffè Pasticceria",
+  "where": "Rome",
+  "country": "Italy",
+  "lat": 41.89415,
+  "lng": 12.47443,
+  "status": "been",
+  "visited": "May 2023, Oct 2015",
+  "post": "/Italy/Rome/"
+ },
+ {
+  "name": "Brew & Brownie",
+  "where": "York",
+  "country": "UK",
+  "lat": 53.96105,
+  "lng": -1.08563,
+  "status": "been",
+  "visited": "Apr 2019",
+  "post": "/UK/York/"
+ },
+ {
+  "name": "Gatehouse Coffee",
+  "where": "York",
+  "country": "UK",
+  "lat": 53.95524,
+  "lng": -1.07084,
+  "status": "been",
+  "visited": "Apr 2019",
+  "post": "/UK/York/"
+ },
+ {
+  "name": "Daughter Café",
+  "where": "York",
+  "country": "UK",
+  "lat": 53.955,
+  "lng": -1.076,
+  "status": "been",
+  "visited": "Apr 2019",
+  "post": "/UK/York/",
+  "approx": true
+ },
+ {
+  "name": "Drift-In",
+  "where": "York",
+  "country": "UK",
+  "lat": 53.958,
+  "lng": -1.078,
+  "status": "been",
+  "visited": "Apr 2019",
+  "post": "/UK/York/",
+  "approx": true
+ },
+ {
+  "name": "The Perky Peacock",
+  "where": "York",
+  "country": "UK",
+  "lat": 53.9608,
+  "lng": -1.088,
+  "status": "been",
+  "visited": "Apr 2019",
+  "post": "/UK/York/",
+  "approx": true
+ },
+ {
+  "name": "Bison Coffee House",
+  "where": "York",
+  "country": "UK",
+  "lat": 53.95232,
+  "lng": -1.07157,
+  "status": "been",
+  "visited": "Apr 2019",
+  "post": "/UK/York/"
+ },
+ {
+  "name": "Partisan",
+  "where": "York",
+  "country": "UK",
+  "lat": 53.95667,
+  "lng": -1.09517,
+  "status": "been",
+  "visited": "Apr 2019",
+  "post": "/UK/York/"
+ },
+ {
+  "name": "Ralph's Coffee",
+  "where": "Mayfair, London",
+  "country": "UK",
+  "lat": 51.50976,
+  "lng": -0.14149,
+  "status": "list"
+ },
+ {
+  "name": "Pophams",
+  "where": "Islington, London",
+  "country": "UK",
+  "lat": 51.53685,
+  "lng": -0.09634,
+  "status": "list"
+ },
+ {
+  "name": "Nibbles",
+  "where": "Kent",
+  "country": "UK",
+  "lat": 51.01558,
+  "lng": 0.61408,
+  "status": "list"
+ },
+ {
+  "name": "Milk Run",
+  "where": "Balham, London",
+  "country": "UK",
+  "lat": 51.43817,
+  "lng": -0.15544,
+  "status": "list"
+ },
+ {
+  "name": "EVE",
+  "where": "Earl's Court, London",
+  "country": "UK",
+  "lat": 51.49496,
+  "lng": -0.19442,
+  "status": "list"
+ },
+ {
+  "name": "Fortitude Bakehouse",
+  "where": "Bloomsbury, London",
+  "country": "UK",
+  "lat": 51.52282,
+  "lng": -0.1242,
+  "status": "list"
+ },
+ {
+  "name": "Bar Italia",
+  "where": "Soho, London",
+  "country": "UK",
+  "lat": 51.51342,
+  "lng": -0.13124,
+  "status": "list"
+ },
+ {
+  "name": "Jolene Redchurch Street",
+  "where": "Shoreditch, London",
+  "country": "UK",
+  "lat": 51.52456,
+  "lng": -0.07431,
+  "status": "list"
+ },
+ {
+  "name": "Bridges Espresso Bar",
+  "where": "Bedford",
+  "country": "UK",
+  "lat": 52.13517,
+  "lng": -0.46847,
+  "status": "list"
+ },
+ {
+  "name": "Arôme Bakery",
+  "where": "Seven Dials, London",
+  "country": "UK",
+  "lat": 51.51303,
+  "lng": -0.12606,
+  "status": "list"
+ },
+ {
+  "name": "TOAD Bakery",
+  "where": "Peckham, London",
+  "country": "UK",
+  "lat": 51.47351,
+  "lng": -0.08109,
+  "status": "list"
+ },
+ {
+  "name": "Chatsworth Bakehouse",
+  "where": "Crystal Palace, London",
+  "country": "UK",
+  "lat": 51.41561,
+  "lng": -0.07204,
+  "status": "list"
+ },
+ {
+  "name": "The Hoxton, Holborn",
+  "where": "Holborn, London",
+  "country": "UK",
+  "lat": 51.51723,
+  "lng": -0.122,
+  "status": "list"
+ },
+ {
+  "name": "Zeit für Brot",
+  "where": "Islington, London",
+  "country": "UK",
+  "lat": 51.53205,
+  "lng": -0.10652,
+  "status": "list"
+ },
+ {
+  "name": "Layla Bakery",
+  "where": "Ladbroke Grove, London",
+  "country": "UK",
+  "lat": 51.52172,
+  "lng": -0.21051,
+  "status": "list"
+ },
+ {
+  "name": "60 Degrees Coffee",
+  "where": "London",
+  "country": "UK",
+  "lat": 51.51,
+  "lng": -0.13,
+  "status": "list",
+  "approx": true
+ },
+ {
+  "name": "The Dusty Knuckle Bakery",
+  "where": "Dalston, London",
+  "country": "UK",
+  "lat": 51.54709,
+  "lng": -0.07409,
+  "status": "list"
+ },
+ {
+  "name": "Mahali Bakery by Mahali and Co",
+  "where": "Battersea, London",
+  "country": "UK",
+  "lat": 51.47638,
+  "lng": -0.14871,
+  "status": "list"
+ },
+ {
+  "name": "Julie's Restaurant",
+  "where": "Holland Park, London",
+  "country": "UK",
+  "lat": 51.51013,
+  "lng": -0.21055,
+  "status": "list"
+ },
+ {
+  "name": "Castiglione",
+  "where": "Trafalgar Square, London",
+  "country": "UK",
+  "lat": 51.50888,
+  "lng": -0.13039,
+  "status": "list"
+ },
+ {
+  "name": "GSQ",
+  "where": "Mayfair, London",
+  "country": "UK",
+  "lat": 51.51144,
+  "lng": -0.15305,
+  "status": "list"
+ },
+ {
+  "name": "E5 Bakehouse",
+  "where": "Hackney, London",
+  "country": "UK",
+  "lat": 51.54119,
+  "lng": -0.05772,
+  "status": "list"
+ },
+ {
+  "name": "Corner Shop",
+  "where": "Temple, London",
+  "country": "UK",
+  "lat": 51.51137,
+  "lng": -0.11396,
+  "status": "list"
+ },
+ {
+  "name": "WatchHouse",
+  "where": "Covent Garden, London",
+  "country": "UK",
+  "lat": 51.51108,
+  "lng": -0.12238,
+  "status": "list"
+ },
+ {
+  "name": "Chestnut Bakery",
+  "where": "Covent Garden, London",
+  "country": "UK",
+  "lat": 51.512,
+  "lng": -0.123,
+  "status": "list",
+  "approx": true
+ }
+]

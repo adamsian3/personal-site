@@ -56,7 +56,7 @@ ROLE_FIXES = {
 }
 
 NAV = [("About", "/about/"), ("Tech & Media", "/Blog/TechMedia/"), ("Travel", "/Blog/Travel/"), ("Newsletter", "/Blog/Newsletters/")]
-SPECIAL_URLS = {"Home": "/", "Gaming": "/gaming/", "List of Games to Play": "/gaming/games-to-play/", "PC Desk Setups": "/gaming/pc-setup/"}
+SPECIAL_URLS = {"Home": "/", "Gaming": "/gaming/", "List of Games to Play": "/gaming/games-to-play/", "PC Desk Setups": "/gaming/pc-setup/", "Coffee": "/coffee/"}
 
 EMOJI = re.compile("[\U0001F000-\U0001FAFF☀-➿️‍\U0001F1E6-\U0001F1FF\U000E0000-\U000E007F⬀-⯿]+")
 missing_images = set()
@@ -344,7 +344,7 @@ def page(path_url, title, body, current=None, desc=None, label=None, dest=None):
 </div></section>
 <footer class="site-footer"><div class="wrap">
 <div>© {YEAR} Ian Adams · {esc(STRAP)} · Views are my own</div>
-<nav aria-label="Footer"><a href="/Pins/">Pins</a><a href="/gaming/">Gaming</a><a href="/Links/">Links</a><a href="https://www.linkedin.com/in/ianmartinadams/" rel="noopener">LinkedIn</a><a href="https://www.instagram.com/ianadams3/" rel="noopener">Instagram</a><a href="https://x.com/ianmartinadams" rel="noopener">X</a></nav>
+<nav aria-label="Footer"><a href="/coffee/">Coffee</a><a href="/Pins/">Pins</a><a href="/gaming/">Gaming</a><a href="/Links/">Links</a><a href="https://www.linkedin.com/in/ianmartinadams/" rel="noopener">LinkedIn</a><a href="https://www.instagram.com/ianadams3/" rel="noopener">Instagram</a><a href="https://x.com/ianmartinadams" rel="noopener">X</a></nav>
 </div></footer>
 </body>
 </html>
@@ -738,6 +738,93 @@ def build_pins():
     page("/Pins/", "Pins", body, desc="Ian Adams' enamel pin collection on a digital corkboard.")
 
 
+COFFEE_JS = r"""
+(() => {
+  const cafes = JSON.parse(document.getElementById('cafes-data').textContent);
+  const dark = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches;
+  const css = getComputedStyle(document.documentElement);
+  const fjord = css.getPropertyValue('--fjord').trim() || '#3C6478';
+  const sea = css.getPropertyValue('--sea-deep').trim() || '#436F67';
+  const map = L.map('cafe-map', { scrollWheelZoom: false, worldCopyJump: true });
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/' + (dark ? 'dark_all' : 'light_all') + '/{z}/{x}/{y}{r}.png', {
+    maxZoom: 19, subdomains: 'abcd',
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+  }).addTo(map);
+  const esc = s => String(s || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const layers = { been: L.layerGroup(), list: L.layerGroup() };
+  cafes.forEach(c => {
+    const been = c.status === 'been';
+    const m = L.circleMarker([c.lat, c.lng], {
+      radius: 7, weight: 2, color: been ? fjord : sea,
+      fillColor: been ? fjord : (dark ? '#121C23' : '#FFFFFF'), fillOpacity: been ? 0.9 : 1
+    });
+    const rows = [
+      '<p class="label" style="margin:0 0 4px">' + (been ? 'Been' : 'On my list') + '</p>',
+      '<strong>' + esc(c.name) + '</strong>',
+      '<div>' + esc(c.where) + (c.country && c.country !== c.where ? ', ' + esc(c.country) : '') + '</div>',
+      c.visited ? '<div class="muted">Visited ' + esc(c.visited) + '</div>' : '',
+      c.approx ? '<div class="muted"><em>Approximate location</em></div>' : '',
+      '<div style="margin-top:6px"><a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(c.name + ' ' + c.where) + '" target="_blank" rel="noopener">Open in Maps</a>' +
+        (c.post ? ' · <a href="' + esc(c.post) + '">Trip notes</a>' : '') + '</div>'
+    ];
+    m.bindPopup(rows.join(''), { maxWidth: 260 });
+    m.bindTooltip(c.name, { direction: 'top', offset: [0, -6] });
+    layers[c.status === 'been' ? 'been' : 'list'].addLayer(m);
+  });
+  layers.been.addTo(map); layers.list.addTo(map);
+  const all = cafes.map(c => [c.lat, c.lng]);
+  map.fitBounds(all, { padding: [30, 30] });
+  document.querySelectorAll('#cafe-filters .chip').forEach(b => b.addEventListener('click', () => {
+    const f = b.dataset.f;
+    document.querySelectorAll('#cafe-filters .chip').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    ['been', 'list'].forEach(k => (f === 'all' || f === k) ? layers[k].addTo(map) : map.removeLayer(layers[k]));
+  }));
+  document.querySelectorAll('[data-zoom]').forEach(b => b.addEventListener('click', () => {
+    const z = b.dataset.zoom; const pts = cafes.filter(c => (c.where.split(',').pop().trim()) === z).map(c => [c.lat, c.lng]);
+    if (pts.length) { map.fitBounds(pts, { padding: [40, 40], maxZoom: 15 }); document.getElementById('cafe-map').scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+  }));
+})();
+"""
+
+
+def build_coffee(n):
+    src = ROOT / "coffee" / "cafes.json"
+    cafes = json.loads(src.read_text(encoding="utf-8")) if src.exists() else []
+    md = n.clean_body()
+    intro, _, rest = md.partition("\n## ")
+    rest = "## " + rest if rest else ""
+    been = [c for c in cafes if c.get("status") == "been"]
+    cities = {}
+    for c in cafes:
+        cities.setdefault(c["where"].split(",")[-1].strip(), []).append(c)
+    fest = len(re.findall(r"^\|\s*\d{4}\s*\|", md, re.M))
+    stats = [(str(len(been)), "cafés visited"), (str(len(cities)), "cities"), (str(fest or 7), "coffee festivals"), (str(len(cafes) - len(been)), "on my list")]
+    data = json.dumps(cafes, ensure_ascii=False).replace("</", "<\\/")
+    city_list = "".join(
+        f'<li><button class="linkish" type="button" data-zoom="{esc(city)}">{esc(city)}</button>'
+        f'<span class="date">{len(items)} café{"s" if len(items) != 1 else ""}</span></li>'
+        for city, items in sorted(cities.items(), key=lambda kv: (-len(kv[1]), kv[0])))
+    body = f"""<link rel="stylesheet" href="/assets/vendor/leaflet/leaflet.css">
+<div class="wrap">
+<header class="page-head read"><p class="label">About</p><h1>Coffee</h1>
+<p class="muted">{esc(no_dash(strip_md(intro)))}</p></header>
+<div class="stats">{''.join(f'<div class="stat"><b>{esc(a)}</b><span>{esc(b)}</span></div>' for a, b in stats)}</div>
+<article class="prose">{render(rest)}</article>
+<div class="filters" id="cafe-filters" role="group" aria-label="Filter cafés">
+<button class="chip" type="button" data-f="all" aria-pressed="true">All</button>
+<button class="chip" type="button" data-f="been" aria-pressed="false">Been</button>
+<button class="chip" type="button" data-f="list" aria-pressed="false">On my list</button>
+</div>
+<div id="cafe-map" class="cafe-map" role="region" aria-label="Map of cafés"></div>
+<div class="map-legend small muted"><span class="dot been"></span>Been <span class="dot list"></span>On my list</div>
+<section><p class="label">By city</p><ul class="list city-list">{city_list}</ul></section>
+</div>
+<script type="application/json" id="cafes-data">{data}</script>
+<script src="/assets/vendor/leaflet/leaflet.js"></script>
+<script>{COFFEE_JS}</script>"""
+    page("/coffee/", "Coffee", body, desc="Ian Adams on coffee: home setup, festivals, and a map of cafés.")
+
+
 def extras():
     shutil.copytree(ROOT / "assets", OUT / "assets", dirs_exist_ok=True)
     (OUT / "favicon.svg").write_text(
@@ -749,16 +836,6 @@ def extras():
     (OUT / "sitemap.xml").write_text(
         f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n', encoding="utf-8")
     (OUT / "_redirects").write_text("/Home / 301\n/Home/ / 301\n/About /about/ 301\n/About/ /about/ 301\n", encoding="utf-8")
-
-
-def build_gaming():
-    """The /gaming/ page: a hand-built game-menu layout kept in gaming/body.html."""
-    src = ROOT / "gaming" / "body.html"
-    if not src.exists():
-        return False
-    page("/gaming/", "Gaming", src.read_text(encoding="utf-8"), current="/gaming/",
-         desc="Ian Adams' gaming page: what I'm playing, my quest log, setup and all-time favourites.")
-    return True
 
 
 def build_404():
@@ -791,14 +868,13 @@ def main():
         build_post(n, "Travel", "/Blog/Travel/")
     for n in letters:
         build_post(n, "Newsletter", "/Blog/Newsletters/")
-    custom_gaming = build_gaming()
     for nm in ("Gaming", "List of Games to Play", "PC Desk Setups"):
-        if nm == "Gaming" and custom_gaming:
-            continue
         if nm in BY_NAME:
             build_generic(BY_NAME[nm], "Gaming")
     build_links(BY_NAME["Links"])
     build_pins()
+    if "Coffee" in BY_NAME:
+        build_coffee(BY_NAME["Coffee"])
     build_404()
     extras()
     print(f"Built {len(PAGES)} pages into {OUT}")
