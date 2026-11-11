@@ -482,7 +482,11 @@ def build_about(about):
         text = no_dash(fix_text(r[3]))
         paras = "".join(f"<p>{esc(p.strip())}</p>" for p in re.split(r"\s*<br>\s*<br>\s*", text) if p.strip())
         initials = "".join(w[0] for w in name.split()[:2]).upper()
-        quotes += (f'<figure class="quote">{paras}<footer><span class="initials" aria-hidden="true">{esc(initials)}</span>'
+        pic = re.search(r"!\[\[([^\]|\\]+)", r[0])
+        avatar = img_tag(pic.group(1), cls="avatar", alt="") if pic else ""
+        if not avatar:
+            avatar = f'<span class="initials" aria-hidden="true">{esc(initials)}</span>'
+        quotes += (f'<figure class="quote">{paras}<footer>{avatar}'
                    f'<div><cite>{esc(name)}</cite><div class="role">{esc(role)}</div></div></footer></figure>')
     body = f"""<div class="wrap">
 <header class="page-head"><p class="label">About</p></header>

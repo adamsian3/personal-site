@@ -99,6 +99,7 @@ a.card:hover { border-color: var(--fjord); }
 .quote p { margin: 0 0 16px; }
 .quote footer { display: flex; gap: 12px; align-items: center; }
 .initials { width: 40px; height: 40px; flex: none; display: grid; place-items: center; background: var(--mist); color: var(--fjord); font-weight: 600; font-size: 14px; border-radius: 2px; }
+.quote .avatar { width: 40px; height: 40px; flex: none; object-fit: cover; border-radius: 4px; background: var(--mist); margin: 0; }
 .quote cite { font-style: normal; font-weight: 600; display: block; }
 .quote .role { font-size: 13px; line-height: 18px; color: var(--ink-muted); }
 
