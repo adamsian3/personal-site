@@ -839,6 +839,16 @@ def extras():
     (OUT / "_redirects").write_text("/Home / 301\n/Home/ / 301\n/About /about/ 301\n/About/ /about/ 301\n", encoding="utf-8")
 
 
+def build_gaming():
+    """The /gaming/ page: a hand-built game-menu layout kept in gaming/body.html."""
+    src = ROOT / "gaming" / "body.html"
+    if not src.exists():
+        return False
+    page("/gaming/", "Gaming", src.read_text(encoding="utf-8"), current="/gaming/",
+         desc="Ian Adams' gaming page: what I'm playing, my quest log, setup and all-time favourites.")
+    return True
+
+
 def build_404():
     body = """<div class="wrap read"><header class="page-head"><p class="label">404</p><h1>That page isn't here.</h1>
 <p class="muted">It may have moved when the site was rebuilt. Try the <a href="/">home page</a>, <a href="/Blog/TechMedia/">Tech &amp; Media</a> or <a href="/Blog/Travel/">Travel</a>.</p></header></div>"""
@@ -869,7 +879,10 @@ def main():
         build_post(n, "Travel", "/Blog/Travel/")
     for n in letters:
         build_post(n, "Newsletter", "/Blog/Newsletters/")
+    custom_gaming = build_gaming()
     for nm in ("Gaming", "List of Games to Play", "PC Desk Setups"):
+        if nm == "Gaming" and custom_gaming:
+            continue
         if nm in BY_NAME:
             build_generic(BY_NAME[nm], "Gaming")
     build_links(BY_NAME["Links"])
