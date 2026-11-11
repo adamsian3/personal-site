@@ -855,7 +855,9 @@ def pins_from_vault():
         if m:
             got = image(m.group(1))
             if got:
-                p["image"] = got[0]
+                built = OUT / got[0].lstrip("/")
+                v = int(built.stat().st_mtime) if built.exists() else 0
+                p["image"] = f"{got[0]}?v={v}"
         for part in re.findall(r"(\w+):(.*?)(?=\s\w+:|$)", r.get("Badge", "")):
             p[part[0]] = part[1].strip()
         pins.append(p)
@@ -878,7 +880,12 @@ def build_pins():
                 p["image"] = f"/img/pins/{local.name}?v={int(local.stat().st_mtime)}"
             else:
                 r = image(Path(p["image"]).name)
-                p["image"] = r[0] if r else None
+                if r:
+                    built = OUT / r[0].lstrip("/")
+                    v = int(built.stat().st_mtime) if built.exists() else 0
+                    p["image"] = f"{r[0]}?v={v}"
+                else:
+                    p["image"] = None
         for k in ("name", "description", "where", "acquired", "label"):
             if isinstance(p.get(k), str):
                 p[k] = no_dash(p[k])
