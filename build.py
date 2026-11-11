@@ -197,6 +197,11 @@ class Note:
         self.location = EMOJI.sub("", loc.group(1)).strip() if loc else ""
         vis = re.search(r"^Visited:\s*(.+)$", body, re.M)
         self.visited = vis.group(1).strip() if vis else ""
+        fv = self.fm.get("visited")
+        if isinstance(fv, list) and any(fv):
+            self.visited = ", ".join(str(v).strip() for v in fv if v and "YYYY" not in str(v))
+        elif isinstance(fv, str) and fv.strip() and "YYYY" not in fv:
+            self.visited = fv.strip()
         emb = re.search(r"!\[\[([^\]|]+)", body)
         self.cover = emb.group(1) if emb else None
         rel = path.relative_to(SRC).as_posix()

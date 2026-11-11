@@ -5,3 +5,4 @@ preview.tgz
 public/__tpl.html
 public/404-tmp/
 coffee/cafes_build_once.py
+public/__*
